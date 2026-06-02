@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEDCAF | Consultoría Forestal</title>
+    <meta name="description" content="SEDCAF – Servicios de Consultoría y Asesoría Forestal. Más de 30 años de experiencia en gestión forestal, auditorías y proyectos en Honduras.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+    <div class="container nav-container">
+        <a href="#inicio" class="logo">
+            <img src="assets/img/logo_sedcaf.jpg" alt="SEDCAF" class="logo-img">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto" class="btn-nav">Contáctenos</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header id="inicio" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <p class="hero-eyebrow">Consultoría Forestal Profesional</p>
+        <h1>Gestión Forestal<br>de <em>Excelencia</em></h1>
+        <blockquote class="hero-quote">
+            "Las futuras generaciones no nos perdonarán por haber malgastado su última oportunidad, y su última oportunidad es hoy."
+            <cite>— Jacques Yves Cousteau</cite>
+        </blockquote>
+        <div class="hero-buttons">
+            <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
+            <a href="#contacto" class="btn btn-outline">Contáctenos</a>
+        </div>
+    </div>
+    <div class="hero-scroll-hint">
+        <i class="fa-solid fa-chevron-down"></i>
+    </div>
+</header>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="about-section section">
+    <div class="container">
+        <div class="about-grid">
+
+            <div class="about-photo-wrap">
+                <img src="assets/img/fernando_casual.png"
+                     alt="Ing. Fernando Rafael Ardón Rodríguez"
+                     class="about-photo">
+                <div class="exp-badge">
+                    <span class="exp-years">30+</span>
+                    <span class="exp-label">Años de<br>Experiencia</span>
+                </div>
+            </div>
+
+            <div class="about-text">
+                <p class="section-label">Sobre Nosotros</p>
+                <h2>Ing. Fernando Rafael<br>Ardón Rodríguez</h2>
+                <p class="lead">Profesional forestal con más de 30 años de experiencia, uniendo la técnica con la gestión estratégica.</p>
+                <p>SEDCAF es una consultoría forestal especializada en análisis técnico, auditoría forestal, gestión ambiental y desarrollo de soluciones tecnológicas aplicadas al sector forestal y ambiental en Honduras.</p>
+                <p>Liderado por el Ing. Fernando Rafael Ardón Rodríguez, SEDCAF integra experiencia técnica, precisión legal y herramientas digitales modernas para garantizar resultados confiables, trazables y de alto nivel profesional.</p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Auditorías Técnicas y Legales</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Administración de Proyectos Forestales</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Gestión de Industrias y Comercio Forestal</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Capacitación y Extensión Rural</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== NATURE BREAK ===== -->
+<div class="nature-break">
+    <img src="assets/img/tapir.jpg" alt="Tapir centroamericano en su hábitat natural" class="nature-img">
+    <div class="nature-overlay">
+        <p class="nature-text">"Proteger el bosque es proteger la vida."</p>
+    </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section id="servicios" class="services-section section">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">Lo Que Ofrecemos</p>
+            <h2>Nuestros Servicios</h2>
+            <p class="section-sub">Soluciones integrales para el sector forestal y ambiental de Honduras.</p>
+        </div>
+        <div class="services-grid">
+
+            <div class="service-card" data-modal="modal-auditorias" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
+                <h3>Auditorías Técnicas</h3>
+                <p>Verificación de planes operativos y cumplimiento normativo en industrias forestales.</p>
+                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="service-card" data-modal="modal-legales" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="icon-box"><i class="fa-solid fa-gavel"></i></div>
+                <h3>Servicios Legales</h3>
+                <p>Asesoría en trámites administrativos y dictámenes técnicos para casos judiciales.</p>
+                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="service-card" data-modal="modal-manejo" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="icon-box"><i class="fa-solid fa-seedling"></i></div>
+                <h3>Manejo Forestal</h3>
+                <p>Instalación de viveros, planes de manejo forestal y silvicultura avanzada.</p>
+                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="service-card" data-modal="modal-proyectos" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="icon-box"><i class="fa-solid fa-diagram-project"></i></div>
+                <h3>Administración de Proyectos</h3>
+                <p>Gerencia de proyectos forestales, diagnósticos socioeconómicos y extensión comunitaria.</p>
+                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="service-card" data-modal="modal-comercio" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
+                <h3>Importación y Exportación</h3>
+                <p>Asesoría en la gerencia de empresas dedicadas al comercio internacional de madera.</p>
+                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+            <div class="service-card" data-modal="modal-capacitacion" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <h3>Capacitación</h3>
+                <p>Formación técnica y desarrollo de capacidades para personal técnico y comunidades rurales.</p>
+                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+    <div class="container cta-content">
+        <h2>¿Listo para optimizar su gestión forestal?</h2>
+        <p>Contáctenos hoy para una evaluación personalizada sin compromiso.</p>
+        <a href="#contacto" class="btn btn-light">Solicitar Asesoría</a>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contacto" class="contact-section section">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">Hablemos</p>
+            <h2>Información de Contacto</h2>
+        </div>
+        <div class="contact-wrapper">
+
+            <div class="contact-info">
+                <p>Estamos a su disposición para cualquier consulta o requerimiento técnico.</p>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-user"></i></div>
+                    <div>
+                        <strong>Consultor Principal</strong>
+                        <span>Ing. Fernando Rafael Ardón Rodríguez</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <strong>Ubicación</strong>
+                        <span>Tegucigalpa M.D.C., Honduras, C.A.</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <strong>Correo Electrónico</strong>
+                        <span><a href="mailto:frardonr@hotmail.com">frardonr@hotmail.com</a></span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <strong>Teléfono / WhatsApp</strong>
+                        <span>+504 · · · · · · · ·</span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" placeholder="Su nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="su@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Asunto</label>
+                    <input type="text" id="subject" name="subject" placeholder="¿En qué podemos ayudarle?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Describa su consulta..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                </button>
+                <p class="form-note" id="formNote"></p>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <img src="assets/img/logo_sedcaf.jpg" alt="SEDCAF" class="footer-logo">
+            <p>Consultoría y Asesoría Forestal<br>Tegucigalpa, Honduras</p>
+        </div>
+        <div class="footer-links">
+            <h4>Navegación</h4>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p><i class="fa-solid fa-envelope"></i> frardonr@hotmail.com</p>
+            <p><i class="fa-solid fa-location-dot"></i> Tegucigalpa, Honduras</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- ===== MODALES DE SERVICIOS ===== -->
+
+<!-- Modal: Auditorías Técnicas -->
+<div class="modal-overlay" id="modal-auditorias" role="dialog" aria-modal="true" aria-labelledby="modal-auditorias-title">
+    <div class="modal-box">
+        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3 id="modal-auditorias-title">Auditorías Técnicas</h3>
+        <p class="modal-lead">Verificación rigurosa del cumplimiento técnico, operativo y normativo en el sector forestal de Honduras, conforme a la Ley Forestal, Áreas Protegidas y Vida Silvestre (LFAPVS) y reglamentos del ICF.</p>
+        <ul class="modal-list">
+            <li><i class="fa-solid fa-circle-check"></i> Revisión de Planes de Manejo Forestal (PMF) y Planes Operativos Anuales (POA)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Verificación del cumplimiento de volúmenes, especies autorizadas y áreas de aprovechamiento</li>
+            <li><i class="fa-solid fa-circle-check"></i> Auditoría de industrias forestales: aserraderos, depósitos y centros de transformación</li>
+            <li><i class="fa-solid fa-circle-check"></i> Evaluación de guías de transporte forestal y cadena de custodia</li>
+            <li><i class="fa-solid fa-circle-check"></i> Análisis de regencia forestal y responsabilidad técnica</li>
+            <li><i class="fa-solid fa-circle-check"></i> Elaboración de informes técnicos periciales para procesos administrativos o judiciales</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
+    </div>
+</div>
+
+<!-- Modal: Servicios Legales -->
+<div class="modal-overlay" id="modal-legales" role="dialog" aria-modal="true" aria-labelledby="modal-legales-title">
+    <div class="modal-box">
+        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-icon"><i class="fa-solid fa-gavel"></i></div>
+        <h3 id="modal-legales-title">Servicios Legales Forestales</h3>
+        <p class="modal-lead">Apoyo técnico-jurídico especializado para procesos administrativos, investigaciones penales y litigios relacionados con el aprovechamiento, tráfico y daño a los recursos forestales.</p>
+        <ul class="modal-list">
+            <li><i class="fa-solid fa-circle-check"></i> Elaboración de dictámenes técnicos periciales para el Ministerio Público y juzgados</li>
+            <li><i class="fa-solid fa-circle-check"></i> Cuantificación de daños forestales y valoración económica del recurso afectado</li>
+            <li><i class="fa-solid fa-circle-check"></i> Asesoría en trámites de permisos, habilitaciones y recursos ante el ICF</li>
+            <li><i class="fa-solid fa-circle-check"></i> Gestión de resoluciones administrativas y apelaciones ante FEMA</li>
+            <li><i class="fa-solid fa-circle-check"></i> Acompañamiento técnico en inspecciones de campo con autoridades</li>
+            <li><i class="fa-solid fa-circle-check"></i> Análisis de cumplimiento normativo bajo la LFAPVS, Código Penal y reglamentos ICF</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
+    </div>
+</div>
+
+<!-- Modal: Manejo Forestal -->
+<div class="modal-overlay" id="modal-manejo" role="dialog" aria-modal="true" aria-labelledby="modal-manejo-title">
+    <div class="modal-box">
+        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-icon"><i class="fa-solid fa-seedling"></i></div>
+        <h3 id="modal-manejo-title">Manejo Forestal</h3>
+        <p class="modal-lead">Planificación y ejecución de actividades silvícolas para el aprovechamiento sostenible, conservación y restauración de ecosistemas forestales en Honduras.</p>
+        <ul class="modal-list">
+            <li><i class="fa-solid fa-circle-check"></i> Elaboración de Planes de Manejo Forestal (PMF) y Planes Operativos Anuales (POA)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Inventarios forestales y evaluación de existencias maderables</li>
+            <li><i class="fa-solid fa-circle-check"></i> Diseño e instalación de viveros forestales nativos y exóticos</li>
+            <li><i class="fa-solid fa-circle-check"></i> Aplicación de tratamientos silvícolas: raleos, podas, enriquecimiento</li>
+            <li><i class="fa-solid fa-circle-check"></i> Planificación de reforestación y restauración de áreas degradadas</li>
+            <li><i class="fa-solid fa-circle-check"></i> Monitoreo de crecimiento y estado fitosanitario de plantaciones forestales</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
+    </div>
+</div>
+
+<!-- Modal: Administración de Proyectos -->
+<div class="modal-overlay" id="modal-proyectos" role="dialog" aria-modal="true" aria-labelledby="modal-proyectos-title">
+    <div class="modal-box">
+        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3 id="modal-proyectos-title">Administración de Proyectos Forestales</h3>
+        <p class="modal-lead">Gerencia integral de proyectos forestales y ambientales desde su formulación hasta la evaluación de resultados, con enfoque en sostenibilidad y desarrollo comunitario.</p>
+        <ul class="modal-list">
+            <li><i class="fa-solid fa-circle-check"></i> Formulación y evaluación de proyectos forestales y agroforestales</li>
+            <li><i class="fa-solid fa-circle-check"></i> Diagnósticos socioeconómicos y líneas base en comunidades rurales</li>
+            <li><i class="fa-solid fa-circle-check"></i> Planificación estratégica y operativa de empresas forestales</li>
+            <li><i class="fa-solid fa-circle-check"></i> Coordinación de equipos técnicos interdisciplinarios en campo</li>
+            <li><i class="fa-solid fa-circle-check"></i> Diseño e implementación de sistemas agroforestales y silvopastoriles</li>
+            <li><i class="fa-solid fa-circle-check"></i> Elaboración de informes de avance, memorias técnicas y reportes a donantes</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
+    </div>
+</div>
+
+<!-- Modal: Importación y Exportación -->
+<div class="modal-overlay" id="modal-comercio" role="dialog" aria-modal="true" aria-labelledby="modal-comercio-title">
+    <div class="modal-box">
+        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3 id="modal-comercio-title">Importación y Exportación Forestal</h3>
+        <p class="modal-lead">Asesoría especializada para empresas del sector maderero que operan en el comercio nacional e internacional, garantizando el cumplimiento de regulaciones fitosanitarias, aduaneras y forestales.</p>
+        <ul class="modal-list">
+            <li><i class="fa-solid fa-circle-check"></i> Gestión de permisos de exportación de madera y productos forestales ante el ICF</li>
+            <li><i class="fa-solid fa-circle-check"></i> Trámites de certificados fitosanitarios y documentación aduanera</li>
+            <li><i class="fa-solid fa-circle-check"></i> Asesoría en requisitos CITES para especies forestales reguladas</li>
+            <li><i class="fa-solid fa-circle-check"></i> Evaluación de cadenas de suministro y trazabilidad de productos madereros</li>
+            <li><i class="fa-solid fa-circle-check"></i> Gerencia de industrias dedicadas a la transformación y comercialización de madera</li>
+            <li><i class="fa-solid fa-circle-check"></i> Optimización de procesos logísticos y cumplimiento de estándares internacionales</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
+    </div>
+</div>
+
+<!-- Modal: Capacitación -->
+<div class="modal-overlay" id="modal-capacitacion" role="dialog" aria-modal="true" aria-labelledby="modal-capacitacion-title">
+    <div class="modal-box">
+        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <h3 id="modal-capacitacion-title">Capacitación y Extensión Rural</h3>
+        <p class="modal-lead">Programas de formación técnica diseñados para fortalecer las capacidades del personal institucional, empresarial y comunitario en temas forestales, ambientales y de gestión de recursos naturales.</p>
+        <ul class="modal-list">
+            <li><i class="fa-solid fa-circle-check"></i> Talleres sobre normativa forestal hondureña: LFAPVS, reglamentos ICF y Código Penal ambiental</li>
+            <li><i class="fa-solid fa-circle-check"></i> Formación en silvicultura, dasonomía y aprovechamiento forestal sostenible</li>
+            <li><i class="fa-solid fa-circle-check"></i> Capacitación en uso de SIG, QGIS y herramientas de teledetección aplicadas al sector forestal</li>
+            <li><i class="fa-solid fa-circle-check"></i> Extensión rural para comunidades en manejo de recursos naturales y agroforestería</li>
+            <li><i class="fa-solid fa-circle-check"></i> Cursos para personal técnico judicial en peritaje forestal y evidencia geoespacial</li>
+            <li><i class="fa-solid fa-circle-check"></i> Diseño de manuales operativos y material didáctico institucional</li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
+    </div>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

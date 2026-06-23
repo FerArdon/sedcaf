@@ -74,13 +74,13 @@ ul { list-style: none; }
 }
 
 .logo-img {
-    height: 52px;
+    height: 130px;
     width: auto;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,.2));
     transition: height var(--transition);
 }
 
-.navbar.scrolled .logo-img { height: 42px; }
+.navbar.scrolled .logo-img { height: 105px; }
 
 .nav-links {
     display: flex;

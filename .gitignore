@@ -1,0 +1,15 @@
+# OS-specific files
+Thumbs.db
+.DS_Store
+
+# IDEs and Editors
+.vscode/
+.idea/
+
+# Large Media files
+*.mp4
+*.mov
+*.avi
+*.zip
+*.rar
+*.tar.gz

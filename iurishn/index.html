@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IURIS HN — Tu Buscador Jurídico Hondureño</title>
+    <meta name="description" content="IURIS HN: El compendio legal y ambiental inteligente de Honduras. Realiza búsquedas instantáneas, citas automáticas de artículos y análisis con IA. Desarrollado por SEDCAF.">
+    
+    <!-- Open Graph Meta Tags (SEO) -->
+    <meta property="og:title" content="IURIS HN — Tu Buscador Jurídico Hondureño">
+    <meta property="og:description" content="Acceso a más de 786 leyes y reglamentos indexados con búsqueda inteligente, citas automatizadas y análisis con IA.">
+    <meta property="og:image" content="assets/volante_iuris_hn.png">
+    <meta property="og:url" content="https://ferardon.github.io/sedcaf/iurishn/">
+    
+    <!-- Google Fonts: Outfit (títulos) e Inter (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos de IURIS HN -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== NAVEGACIÓN ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo-wrap" id="logoLink">
+                <img src="assets/IURIS_HN_LOGO.png" alt="Logo IURIS HN" class="logo-img">
+                <span class="logo-text">IURIS <span class="accent-gold">HN</span></span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#caracteristicas">Características</a></li>
+                <li><a href="#simulador">Probar Buscador</a></li>
+                <li><a href="#ambiental">FEMA</a></li>
+                <li><a href="../" class="back-to-sedcaf"><i class="fa-solid fa-arrow-left"></i> Volver a SEDCAF</a></li>
+                <li><a href="#contacto" class="btn-nav" id="ctaNav">Solicitar Acceso</a></li>
+            </ul>
+            
+            <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú de navegación">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== SECCIÓN HERO ===== -->
+    <header id="inicio" class="hero-section">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="badge-fema">
+                    <span class="badge-dot"></span> Fiscalía del Medio Ambiente (FEMA)
+                </div>
+                <h1 class="hero-title">El Derecho hondureño<br><span class="gradient-text">al alcance de tu mano</span></h1>
+                <p class="hero-subtitle">
+                    Plataforma inteligente de búsqueda y análisis de legislación nacional. Diseñado para simplificar el acceso a normas, citar con precisión técnica y obtener explicaciones claras potenciadas por Inteligencia Artificial.
+                </p>
+                <div class="hero-actions">
+                    <a href="#simulador" class="btn btn-primary" id="btnHeroSimulate"><i class="fa-solid fa-play"></i> Probar Demo</a>
+                    <a href="#contacto" class="btn btn-outline" id="btnHeroContact">Solicitar Acceso <i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <!-- Mockup de Pantalla Premium en CSS -->
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="mock-header">
+                            <i class="fa-solid fa-scale-balanced mock-icon"></i>
+                            <div class="mock-title">IURIS HN</div>
+                        </div>
+                        <div class="mock-search-bar">
+                            <i class="fa-solid fa-search"></i>
+                            <span>Art. 45 Ley Forestal</span>
+                        </div>
+                        <div class="mock-result-card">
+                            <div class="mock-tag">Ley Forestal, Áreas Protegidas...</div>
+                            <div class="mock-art">Art. 45: Clasificación del Suelo</div>
+                            <p class="mock-snippet">"Se prohíbe terminantemente el cambio de uso del suelo forestal..."</p>
+                        </div>
+                        <div class="mock-ai-assistant">
+                            <div class="mock-ai-header">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>Asistente IA</span>
+                            </div>
+                            <p class="mock-ai-text">Este artículo restringe de forma absoluta el cambio de uso del suelo, protegiendo las cuencas hidrográficas de Honduras.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== SECCIÓN DE CARACTERÍSTICAS ===== -->
+    <section id="caracteristicas" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-label">¿Por qué elegirnos?</span>
+                <h2 class="section-title">Diseñado para la Práctica Legal Moderna</h2>
+                <p class="section-desc">IURIS HN combina precisión legal y agilidad digital para optimizar el trabajo técnico y judicial.</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Tarjeta 1 -->
+                <div class="feature-card" id="featIndexed">
+                    <div class="feature-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <h3>786+ Leyes y Reglamentos</h3>
+                    <p>Acceso inmediato a un compendio exhaustivo y actualizado, priorizando la normativa forestal y ambiental de Honduras.</p>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="feature-card" id="featInstant">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Búsqueda Instantánea</h3>
+                    <p>Motor de indexación optimizado que encuentra palabras clave, artículos o frases en milisegundos con total precisión.</p>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="feature-card" id="featCitation">
+                    <div class="feature-icon"><i class="fa-solid fa-quote-right"></i></div>
+                    <h3>Citas Automatizadas</h3>
+                    <p>Genera la cita formal exacta de la ley y el artículo seleccionado, listo para anexar en dictámenes técnicos o demandas.</p>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div class="feature-card" id="featMulti">
+                    <div class="feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3>Disponible en PC y Móvil</h3>
+                    <p>Consulta la normativa en la oficina con la versión de escritorio o directamente en el campo a través de tu dispositivo móvil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SIMULADOR INTERACTIVO (DEMO) ===== -->
+    <section id="simulador" class="simulator-section">
+        <div class="container">
+            <div class="simulator-layout">
+                <div class="simulator-info">
+                    <span class="sub-label">Simulador en Vivo</span>
+                    <h2 class="section-title">Prueba la Velocidad de IURIS HN</h2>
+                    <p class="section-desc">
+                        Haz clic en cualquiera de las consultas predefinidas abajo para ver cómo nuestro motor indexa y el asistente IA analiza los resultados al instante.
+                    </p>
+                    
+                    <div class="query-options">
+                        <button class="query-btn active" data-query="forestal" id="queryBtnForestal">
+                            <i class="fa-solid fa-tree"></i> Art. 45 Ley Forestal
+                        </button>
+                        <button class="query-btn" data-query="penal" id="queryBtnPenal">
+                            <i class="fa-solid fa-gavel"></i> Incendio Forestal (Código Penal)
+                        </button>
+                        <button class="query-btn" data-query="ambiente" id="queryBtnAmbiente">
+                            <i class="fa-solid fa-leaf"></i> Evaluación de Impacto Ambiental
+                        </button>
+                    </div>
+                    
+                    <div class="device-specs">
+                        <div class="spec-item"><i class="fa-solid fa-microchip"></i> <span>Indexación Local FTS5</span></div>
+                        <div class="spec-item"><i class="fa-solid fa-shield-halved"></i> <span>Respuestas Verificadas</span></div>
+                    </div>
+                </div>
+
+                <div class="simulator-preview">
+                    <!-- Marco de Buscador de Escritorio Premium -->
+                    <div class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="browser-tab">IURIS HN — Buscador Inteligente</div>
+                        </div>
+                        <div class="browser-body">
+                            <!-- Barra de búsqueda del simulador -->
+                            <div class="sim-search-container">
+                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                <input type="text" id="simSearchInput" readonly value="Art. 45 Ley Forestal">
+                                <span class="search-speed" id="simSearchSpeed">Buscando en 0.04s...</span>
+                            </div>
+
+                            <!-- Resultados de la búsqueda -->
+                            <div class="sim-results" id="simResultsContainer">
+                                <div class="result-header-text">1 Documento Relevante Encontrado</div>
+                                
+                                <div class="sim-result-card">
+                                    <div class="result-meta">
+                                        <span class="law-title" id="resLawTitle">Ley Forestal, Áreas Protegidas y Vida Silvestre</span>
+                                        <span class="law-decreto" id="resLawDecreto">Decreto No. 98-2007</span>
+                                    </div>
+                                    <h4 class="result-article" id="resArticleTitle">Artículo 45. Clasificación del Uso de Suelos</h4>
+                                    <blockquote class="result-text" id="resTextSnippet">
+                                        "Se prohíbe el cambio de uso de suelos en áreas forestales públicas o privadas, salvo proyectos de interés público nacional aprobados por el ICF..."
+                                    </blockquote>
+                                    
+                                    <!-- Botón de Citado -->
+                                    <div class="result-actions">
+                                        <button class="action-btn" id="btnCopyCitation">
+                                            <i class="fa-solid fa-copy"></i> Copiar Cita
+                                        </button>
+                                        <span class="citation-toast" id="citationToast">Cita copiada</span>
+                                    </div>
+                                </div>
+
+                                <!-- Cuadro de Inteligencia Artificial -->
+                                <div class="sim-ai-card">
+                                    <div class="ai-header">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        <span>Análisis Legal de la IA (Gemini Model)</span>
+                                        <span class="ai-status"><span class="pulse-dot"></span> En línea</span>
+                                    </div>
+                                    <p class="ai-body-text" id="resAiAnalysis">
+                                        Este artículo establece una restricción absoluta sobre la conversión de uso de suelos forestales para proteger la biodiversidad de Honduras. Toda modificación no autorizada por el ICF en áreas declaradas forestales anula las licencias y configura infracciones de carácter penal ambiental.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN DE LA FISCALÍA (FEMA) ===== -->
+    <section id="ambiental" class="fema-section">
+        <div class="fema-overlay"></div>
+        <div class="container fema-grid">
+            <div class="fema-visual">
+                <!-- Se enlaza al volante corporativo como imagen real -->
+                <img src="assets/volante_iuris_hn.png" alt="Volante Informativo IURIS HN" class="fema-img" id="imgFemaFlyer">
+            </div>
+            <div class="fema-content">
+                <span class="sub-label">Compendio Especializado</span>
+                <h2 class="section-title">Fortaleciendo la Justicia Ambiental en Honduras</h2>
+                <p>
+                    IURIS HN nació con un objetivo claro: apoyar a los fiscales de la <strong>Fiscalía Especial del Medio Ambiente (FEMA)</strong>, jueces y analistas de campo en la toma rápida y exacta de decisiones basadas en la ley.
+                </p>
+                <p>
+                    Centraliza la legislación de agua, vida silvestre, cambio climático y minería en un solo lugar indexado, permitiendo extraer referencias y fundamentar dictámenes en segundos.
+                </p>
+                <div class="fema-quote">
+                    <blockquote>
+                        "El Derecho ambiental hondureño al alcance de tu mano, permitiendo una gestión técnica sin demoras."
+                    </blockquote>
+                    <cite>— Dirección de Desarrollo IURIS HN</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECCIÓN DE CONTACTO Y SOLICITUD DE ACCESO ===== -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-header">
+                    <i class="fa-solid fa-scale-balanced contact-icon"></i>
+                    <h2>Solicita tu Acceso a IURIS HN</h2>
+                    <p>La herramienta está disponible para profesionales legales, técnicos ambientales, fiscales y dependencias estatales de Honduras.</p>
+                </div>
+                
+                <div class="contact-details">
+                    <p class="email-label">Escríbenos directamente a nuestro correo de soporte y licencias:</p>
+                    
+                    <div class="email-display-container">
+                        <span class="email-address" id="emailAddress">sedcaf.consultores@outlook.hn</span>
+                        <button class="btn-copy-email" id="btnCopyEmail" title="Copiar correo al portapapeles">
+                            <i class="fa-solid fa-copy"></i> <span id="copyEmailText">Copiar</span>
+                        </button>
+                    </div>
+                    
+                    <div class="contact-actions">
+                        <a href="mailto:sedcaf.consultores@outlook.hn?subject=Solicitud%20de%20Acceso%20IURIS%20HN&body=Estimado%20equipo%20de%20SEDCAF,%0A%0ADeseo%20solicitar%20informaci%C3%B3n%20para%20obtener%20una%20licencia%20de%20IURIS%20HN.%0A%0ANombre:%20%0AInstituci%C3%B3n/Empresa:%20%0ATel%C3%A9fono:%20" class="btn btn-primary" id="btnMailtoSend">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Correo Directo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PIE DE PÁGINA (FOOTER) ===== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-wrap">
+                    <img src="assets/IURIS_HN_LOGO.png" alt="Logo IURIS HN" class="logo-img">
+                    <span class="logo-text">IURIS <span class="accent-gold">HN</span></span>
+                </div>
+                <p>Tu Buscador Jurídico Hondureño de Confianza.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#caracteristicas">Características</a></li>
+                    <li><a href="#simulador">Buscador</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-info">
+                <h4>Soporte Técnico</h4>
+                <p>Desarrollado por <strong>SEDCAF</strong>. Todos los derechos reservados.</p>
+                <p class="gaceta-note"><i class="fa-solid fa-circle-info"></i> La legislación oficial proviene del Centro Electrónico de Documentación e Información Judicial (CEDIJ) de la República de Honduras.</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 IURIS HN | SEDCAF Consultores. Tegucigalpa, Honduras.</p>
+        </div>
+    </footer>
+
+    <!-- Script del Simulador e Interacciones -->
+    <script src="script.js"></script>
+</body>
+</html>

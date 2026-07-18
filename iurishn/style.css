@@ -975,6 +975,25 @@ body {
 .contact-actions {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.link-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-gold) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: color var(--transition-fast);
+}
+
+.link-gold:hover {
+    color: var(--accent-gold-hover) !important;
+    text-decoration: underline !important;
 }
 
 /* --- Footer --- */

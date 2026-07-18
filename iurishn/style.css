@@ -141,6 +141,23 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-whatsapp {
+    background: #25D366 !important;
+    color: #ffffff !important;
+    border: none;
+    width: 48px;
+    height: 48px;
+    padding: 0 !important;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:hover {
+    background: #1eb85a !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.55);
+    transform: translateY(-2px);
+}
+
 /* --- Barra de Navegación --- */
 .navbar {
     height: var(--header-height);

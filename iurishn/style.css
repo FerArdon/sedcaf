@@ -127,6 +127,19 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-secondary {
+    background: linear-gradient(135deg, #2E86FF 0%, #1c6fe0 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 20px rgba(46, 134, 255, 0.35);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #4a9eff 0%, #2E86FF 100%);
+    box-shadow: 0 6px 24px rgba(46, 134, 255, 0.5);
+    transform: translateY(-2px);
+}
+
 /* --- Barra de Navegación --- */
 .navbar {
     height: var(--header-height);

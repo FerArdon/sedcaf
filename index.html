@@ -1,639 +1,337 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEDCAF | Consultoría Forestal</title>
-    <meta name="description" content="SEDCAF – Servicios de Consultoría y Asesoría Forestal. Más de 40 años de experiencia en gestión forestal, auditorías y proyectos en Honduras.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEDCAF | Consultoría Forestal</title>
+<meta name="description" content="SEDCAF – Servicios de Consultoría y Asesoría Forestal. Más de 40 años de experiencia en gestión forestal, auditorías y proyectos en Honduras.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --bg:#0A0F0C; --bg-2:#0F1712; --panel:rgba(255,255,255,.04); --borde:rgba(74,222,128,.16);
+  --lima:#4ADE80; --lima-suave:#86EFAC; --esmeralda:#10B981; --texto:#E7EFE9; --gris:#93A29A;
+  --display:'Space Grotesk',sans-serif; --body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--texto);line-height:1.7}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+.section{padding:100px 0}
+h2{font-family:var(--display);font-size:clamp(2rem,4vw,2.7rem);line-height:1.15;letter-spacing:-.02em}
+.grad-text{background:linear-gradient(90deg,var(--lima),var(--esmeralda));-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-label{font-family:var(--display);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--lima);margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:10px;font-weight:600;font-size:.95rem;transition:.3s;font-family:var(--display)}
+.btn-lima{background:linear-gradient(90deg,var(--lima),var(--esmeralda));color:#052012}
+.btn-lima:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--borde);color:var(--texto);background:var(--panel)}
+.btn-ghost:hover{border-color:var(--lima);color:var(--lima-suave)}
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+/* NAV */
+.navbar{position:fixed;top:0;width:100%;z-index:50;background:rgba(10,15,12,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--borde)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:1.25rem}
+.logo img{height:40px;border-radius:8px}
+.logo .dot{color:var(--lima)}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{font-size:.9rem;color:var(--gris);transition:.3s}
+.nav-links a:hover{color:var(--lima-suave)}
+.nav-cta{background:linear-gradient(90deg,var(--lima),var(--esmeralda));color:#052012!important;padding:9px 20px;border-radius:8px;font-weight:600}
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+ background:radial-gradient(ellipse 80% 60% at 70% 20%,rgba(16,185,129,.15),transparent),
+            radial-gradient(ellipse 60% 50% at 20% 80%,rgba(74,222,128,.08),transparent),var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;
+ background-image:linear-gradient(rgba(74,222,128,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.05) 1px,transparent 1px);
+ background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,black,transparent)}
+.hero-content{position:relative;max-width:820px;padding-top:100px}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--borde);border-radius:999px;padding:8px 18px;font-size:.82rem;color:var(--lima-suave);margin-bottom:30px}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--lima);box-shadow:0 0 12px var(--lima)}
+.hero h1{font-family:var(--display);font-size:clamp(2.8rem,6.5vw,4.6rem);line-height:1.06;letter-spacing:-.03em;margin-bottom:26px}
+.hero-quote{color:var(--gris);max-width:600px;font-size:1.05rem;font-style:italic;border-left:2px solid var(--esmeralda);padding-left:20px;margin-bottom:42px}
+.hero-quote cite{display:block;font-style:normal;color:var(--lima-suave);font-size:.85rem;margin-top:8px}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap}
+.stats{display:flex;gap:48px;margin-top:64px;flex-wrap:wrap}
+.stat b{font-family:var(--display);font-size:2rem;color:var(--lima)}
+.stat span{display:block;font-size:.82rem;color:var(--gris);letter-spacing:.06em;text-transform:uppercase}
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+/* ABOUT */
+.about{background:var(--bg-2)}
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:center}
+.about-photo-wrap{position:relative}
+.about-photo{width:100%;border-radius:18px;border:1px solid var(--borde)}
+.glow-frame{position:absolute;inset:-14px;border:1px solid var(--borde);border-radius:24px;z-index:-1}
+.exp-chip{position:absolute;bottom:-20px;right:-14px;background:rgba(10,15,12,.9);backdrop-filter:blur(10px);border:1px solid var(--borde);border-radius:14px;padding:16px 22px;text-align:center}
+.exp-chip b{font-family:var(--display);font-size:1.7rem;color:var(--lima);display:block;line-height:1.1}
+.exp-chip span{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+.about-text .lead{color:var(--lima-suave);font-size:1.1rem;font-weight:500;margin:18px 0 14px}
+.about-text p{color:var(--gris);margin-bottom:14px}
+.feature-list{list-style:none;margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feature-list li{display:flex;gap:10px;font-size:.92rem;font-weight:500}
+.feature-list i{color:var(--lima);margin-top:5px}
+
+/* SERVICES */
+.section-header{text-align:center;max-width:640px;margin:0 auto 64px}
+.section-header .sub{color:var(--gris);margin-top:14px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc{background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:34px 28px;transition:.35s;position:relative;overflow:hidden}
+.svc::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--lima),transparent);opacity:0;transition:.35s}
+.svc:hover{transform:translateY(-6px);border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.05)}
+.svc:hover::before{opacity:1}
+.svc .icon{width:52px;height:52px;border-radius:12px;background:rgba(74,222,128,.1);border:1px solid var(--borde);color:var(--lima);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:20px}
+.svc h3{font-family:var(--display);font-size:1.15rem;margin-bottom:10px}
+.svc p{font-size:.9rem;color:var(--gris)}
+.svc .more{display:inline-block;margin-top:16px;font-size:.82rem;color:var(--lima);font-weight:600}
+
+/* PRODUCTS */
+.products{background:var(--bg-2)}
+.product-card{background:var(--panel);border:1px solid var(--borde);border-radius:22px;padding:50px;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;margin-bottom:34px}
+.product-card .tag{display:inline-block;background:rgba(74,222,128,.1);border:1px solid var(--borde);color:var(--lima-suave);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px;font-family:var(--display)}
+.product-card h3{font-family:var(--display);font-size:1.9rem;margin-bottom:14px}
+.product-card p{color:var(--gris);margin-bottom:10px}
+.product-actions{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+.grid-chips{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gchip{background:rgba(255,255,255,.03);border:1px solid var(--borde);border-radius:12px;padding:16px}
+.gchip b{display:block;font-size:.9rem;font-family:var(--display)}
+.gchip span{font-size:.78rem;color:var(--gris)}
+
+/* CTA */
+.cta{text-align:center;padding:110px 24px;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(16,185,129,.18),transparent)}
+.cta h2{margin-bottom:14px;position:relative}
+.cta p{color:var(--gris);margin-bottom:36px;position:relative}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:56px}
+.info-item{display:flex;gap:16px;margin-top:24px}
+.info-icon{width:46px;height:46px;border-radius:12px;background:rgba(74,222,128,.1);border:1px solid var(--borde);color:var(--lima);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-item strong{display:block;font-family:var(--display)}
+.info-item span{color:var(--gris);font-size:.92rem}
+.form{background:var(--panel);border:1px solid var(--borde);border-radius:20px;padding:42px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.8rem;color:var(--lima-suave);margin-bottom:8px;font-family:var(--display);letter-spacing:.06em}
+.fg input,.fg textarea{width:100%;padding:13px 16px;background:rgba(0,0,0,.35);border:1px solid var(--borde);border-radius:10px;color:var(--texto);font-family:var(--body);font-size:.95rem}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--lima)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--borde);padding:64px 0 0;background:var(--bg-2)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:46px}
+footer h4{font-family:var(--display);color:var(--lima-suave);margin-bottom:16px}
+footer ul{list-style:none}
+footer li{margin-bottom:9px}
+footer p,footer a{color:var(--gris);font-size:.92rem}
+footer a:hover{color:var(--lima)}
+.footer-logo{height:46px;border-radius:8px;margin-bottom:14px}
+.footer-bottom{border-top:1px solid var(--borde);padding:20px 0;text-align:center;font-size:.82rem;color:var(--gris)}
+@media(max-width:900px){
+ .about-grid,.product-card,.contact-wrap{grid-template-columns:1fr}
+ .services-grid{grid-template-columns:1fr}
+ .footer-grid{grid-template-columns:1fr}
+ .nav-links{display:none}
+}
+
+/* BOTON FLOTANTE WHATSAPP */
+.wa-float-btn{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.35);z-index:9999;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.wa-float-btn:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(37,211,102,.5)}
+@media(max-width:600px){.wa-float-btn{width:52px;height:52px;bottom:16px;right:16px}.wa-float-btn svg{width:24px;height:24px}}
+</style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar" id="navbar">
-    <div class="container nav-container">
-        <a href="#inicio" class="logo">
-            <img src="assets/img/logo_sedcaf.png" alt="SEDCAF" class="logo-img">
-        </a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#about">Sobre Mí</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#silvadesk">SilvaDesk Pro</a></li>
-            <li><a href="#iurishn">IURIS HN</a></li>
-            <li><a href="#jurisgestion">JURIS-GESTIÓN-PRO</a></li>
-            <li><a href="#contacto" class="btn-nav">Contáctenos</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger" aria-label="Menú">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-    </div>
+<nav class="navbar">
+ <div class="container nav-inner">
+  <a href="#" class="logo"><img src="assets/img/logo_sedcaf.png" alt="SEDCAF">SEDCAF<span class="dot">.</span></a>
+  <ul class="nav-links">
+   <li><a href="#inicio">Inicio</a></li>
+   <li><a href="#about">Sobre Mí</a></li>
+   <li><a href="#servicios">Servicios</a></li>
+   <li><a href="#productos">Software</a></li>
+   <li><a href="#contacto" class="nav-cta">Contáctenos</a></li>
+  </ul>
+ </div>
 </nav>
 
-<!-- ===== HERO ===== -->
 <header id="inicio" class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-        <p class="hero-eyebrow">Consultoría Forestal Profesional</p>
-        <h1>Gestión Forestal<br>de <em>Excelencia</em></h1>
-        <blockquote class="hero-quote">
-            "Las futuras generaciones no nos perdonarán por haber malgastado su última oportunidad, y su última oportunidad es hoy."
-            <cite>— Jacques Yves Cousteau</cite>
-        </blockquote>
-        <div class="hero-buttons">
-            <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
-            <a href="#contacto" class="btn btn-outline">Contáctenos</a>
-        </div>
-    </div>
-    <div class="hero-scroll-hint">
-        <i class="fa-solid fa-chevron-down"></i>
-    </div>
+ <div class="container hero-content">
+  <span class="pill"><span class="dot"></span> Consultoría Forestal + Tecnología · Honduras</span>
+  <h1>Gestión forestal de<br><span class="grad-text">excelencia técnica</span></h1>
+  <blockquote class="hero-quote">
+   "Las futuras generaciones no nos perdonarán por haber malgastado su última oportunidad, y su última oportunidad es hoy."
+   <cite>— Jacques Yves Cousteau</cite>
+  </blockquote>
+  <div class="hero-buttons">
+   <a href="#servicios" class="btn btn-lima">Nuestros Servicios <i class="fa-solid fa-arrow-right"></i></a>
+   <a href="#contacto" class="btn btn-ghost">Contáctenos</a>
+  </div>
+  <div class="stats">
+   <div class="stat"><b>40+</b><span>Años de experiencia</span></div>
+   <div class="stat"><b>3</b><span>Soluciones de software</span></div>
+   <div class="stat"><b>786+</b><span>Leyes en IURIS HN</span></div>
+  </div>
+ </div>
 </header>
 
-<!-- ===== ABOUT ===== -->
-<section id="about" class="about-section section">
-    <div class="container">
-        <div class="about-grid">
-
-            <div class="about-photo-wrap">
-                <img src="assets/img/fernando_casual.png"
-                     alt="Ing. Fernando Rafael Ardón Rodríguez"
-                     class="about-photo">
-                <div class="exp-badge">
-                    <span class="exp-years">40+</span>
-                    <span class="exp-label">Años de<br>Experiencia</span>
-                </div>
-            </div>
-
-            <div class="about-text">
-                <p class="section-label">Sobre Nosotros</p>
-                <h2>Ing. Fernando Rafael<br>Ardón Rodríguez</h2>
-                <p class="lead">Profesional forestal con más de 40 años de experiencia, uniendo la técnica con la gestión estratégica.</p>
-                <p>SEDCAF es una consultoría forestal especializada en análisis técnico, auditoría forestal, gestión ambiental y desarrollo de soluciones tecnológicas aplicadas al sector forestal y ambiental en Honduras.</p>
-                <p>Liderado por el Ing. Fernando Rafael Ardón Rodríguez, SEDCAF integra experiencia técnica, precisión legal y herramientas digitales modernas para garantizar resultados confiables, trazables y de alto nivel profesional.</p>
-                <ul class="feature-list">
-                    <li><i class="fa-solid fa-circle-check"></i> Auditorías Técnicas y Legales</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Administración de Proyectos Forestales</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Gestión de Industrias y Comercio Forestal</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Capacitación y Extensión Rural</li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ===== NATURE BREAK ===== -->
-<div class="nature-break">
-    <div class="nature-overlay">
-        <p class="nature-text">"Proteger el bosque es proteger la vida."</p>
-    </div>
-</div>
-
-<!-- ===== SERVICES ===== -->
-<section id="servicios" class="services-section section">
-    <div class="container">
-        <div class="section-header">
-            <p class="section-label">Lo Que Ofrecemos</p>
-            <h2>Nuestros Servicios</h2>
-            <p class="section-sub">Soluciones integrales para el sector forestal y ambiental de Honduras.</p>
-        </div>
-        <div class="services-grid">
-
-            <div class="service-card" data-modal="modal-auditorias" role="button" tabindex="0" aria-haspopup="dialog">
-                <div class="icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
-                <h3>Auditorías Técnicas</h3>
-                <p>Verificación de planes operativos y cumplimiento normativo en industrias forestales.</p>
-                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-            <div class="service-card" data-modal="modal-legales" role="button" tabindex="0" aria-haspopup="dialog">
-                <div class="icon-box"><i class="fa-solid fa-gavel"></i></div>
-                <h3>Servicios Legales</h3>
-                <p>Asesoría en trámites administrativos y dictámenes técnicos para casos judiciales.</p>
-                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-            <div class="service-card" data-modal="modal-manejo" role="button" tabindex="0" aria-haspopup="dialog">
-                <div class="icon-box"><i class="fa-solid fa-seedling"></i></div>
-                <h3>Manejo Forestal</h3>
-                <p>Instalación de viveros, planes de manejo forestal y silvicultura avanzada.</p>
-                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-            <div class="service-card" data-modal="modal-proyectos" role="button" tabindex="0" aria-haspopup="dialog">
-                <div class="icon-box"><i class="fa-solid fa-diagram-project"></i></div>
-                <h3>Administración de Proyectos</h3>
-                <p>Gerencia de proyectos forestales, diagnósticos socioeconómicos y extensión comunitaria.</p>
-                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-            <div class="service-card" data-modal="modal-comercio" role="button" tabindex="0" aria-haspopup="dialog">
-                <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
-                <h3>Importación y Exportación</h3>
-                <p>Asesoría en la gerencia de empresas dedicadas al comercio internacional de madera.</p>
-                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-            <div class="service-card" data-modal="modal-capacitacion" role="button" tabindex="0" aria-haspopup="dialog">
-                <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
-                <h3>Capacitación</h3>
-                <p>Formación técnica y desarrollo de capacidades para personal técnico y comunidades rurales.</p>
-                <span class="card-more">Ver más <i class="fa-solid fa-arrow-right"></i></span>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ===== SILVADESK PRO ===== -->
-<section id="silvadesk" style="background: linear-gradient(135deg, #1E2410 0%, #3A4A1E 55%, #1E2410 100%); padding: 90px 24px;">
-  <div class="container">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
-
-      <!-- Texto -->
-      <div>
-        <p style="font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:14px;">Solución Tecnológica · SEDCAF</p>
-        <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-          <img src="https://raw.githubusercontent.com/FerArdon/SilvaDeskPro/main/assets/icon_white.png"
-               alt="SilvaDesk Pro"
-               style="height:56px; width:56px; object-fit:contain;
-                      background:rgba(255,255,255,0.1); border-radius:12px; padding:8px;">
-          <h2 style="font-size:clamp(28px,4vw,42px); margin:0; color:white; letter-spacing:-1px; font-family:'Outfit',sans-serif;">SilvaDesk Pro</h2>
-        </div>
-        <p style="font-size:17px; color:rgba(255,255,255,0.88); line-height:1.65; margin-bottom:14px;">
-          Software profesional de gestión forestal desarrollado por SEDCAF, diseñado para ingenieros forestales, regentes y consultores registrados en COLPROFORH.
-        </p>
-        <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.65; margin-bottom:32px;">
-          Protocolo Judicial FEMA · Bitácora TFC · Facturador · Calculadora Arancel COLPROFORH 2024 · Mapa de Predios · Dashboard — todo sin internet, en tu computadora.
-        </p>
-        <div style="display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="https://ferardon.github.io/SilvaDeskPro/" target="_blank"
-             style="display:inline-flex; align-items:center; gap:8px;
-                    background:#F2C94C; color:#1E2410; padding:13px 26px;
-                    border-radius:10px; font-weight:700; font-size:15px;
-                    text-decoration:none; font-family:'Outfit',sans-serif;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver más
-          </a>
-          <a href="https://github.com/FerArdon/SilvaDeskPro/releases/latest" target="_blank"
-             style="display:inline-flex; align-items:center; gap:8px;
-                    background:rgba(255,255,255,0.1); color:white;
-                    border:1px solid rgba(255,255,255,0.28);
-                    padding:13px 26px; border-radius:10px;
-                    font-weight:600; font-size:15px; text-decoration:none;
-                    font-family:'Outfit',sans-serif;">
-            <i class="fa-solid fa-download"></i> Descargar gratis
-          </a>
-        </div>
-      </div>
-
-      <!-- Módulos grid -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">⚖️</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Protocolo Judicial</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Actas para FEMA y juzgados</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📓</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Bitácora TFC</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Registros de campo normados</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">🧾</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Facturador</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Facturas profesionales en PDF</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">🌿</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Arancel COLPROFORH</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Calculadora tarifas 2024</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📊</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Dashboard</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Estadísticas en tiempo real</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">🗺️</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Mapa de Predios</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Gestión geoespacial</div>
-        </div>
-      </div>
-
-    </div>
+<section id="about" class="section about">
+ <div class="container about-grid">
+  <div class="about-photo-wrap">
+   <div class="glow-frame"></div>
+   <img src="assets/img/fernando_casual.png" alt="Ing. Fernando Rafael Ardón Rodríguez" class="about-photo">
+   <div class="exp-chip"><b>40+</b><span>Años de experiencia</span></div>
   </div>
-</section>
-
-<!-- ===== IURIS HN ===== -->
-<section id="iurishn" style="background: linear-gradient(135deg, #1E2410 0%, #4E5F29 55%, #1E2410 100%); padding: 90px 24px;">
-  <div class="container">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
-
-      <!-- Texto -->
-      <div>
-        <p style="font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:14px;">Solución Tecnológica · SEDCAF</p>
-        <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-          <img src="https://ferardon.github.io/sedcaf/iurishn/assets/IURIS_HN_LOGO.png"
-               alt="IURIS HN"
-               style="height:56px; width:56px; object-fit:contain;
-                      background:rgba(255,255,255,0.1); border-radius:12px; padding:8px;">
-          <h2 style="font-size:clamp(28px,4vw,42px); margin:0; color:white; letter-spacing:-1px; font-family:'Outfit',sans-serif;">IURIS HN</h2>
-        </div>
-        <p style="font-size:17px; color:rgba(255,255,255,0.88); line-height:1.65; margin-bottom:14px;">
-          Buscador jurídico inteligente con acceso a <strong>786 leyes vigentes de Honduras</strong>, diseñado para abogados, fiscales, jueces y estudiantes de Derecho.
-        </p>
-        <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.65; margin-bottom:32px;">
-          Búsqueda instantánea por artículo o palabra clave · Citas automatizadas · Compendio de legislación ambiental · Disponible en PC y Android — todo sin internet.
-        </p>
-        <div style="display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="https://ferardon.github.io/sedcaf/iurishn/" target="_blank"
-             style="display:inline-flex; align-items:center; gap:8px;
-                    background:#F2C94C; color:#1E2410; padding:13px 26px;
-                    border-radius:10px; font-weight:700; font-size:15px;
-                    text-decoration:none; font-family:'Outfit',sans-serif;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver más
-          </a>
-          <a href="https://ferardon.github.io/sedcaf/iurishn/#precios" target="_blank"
-             style="display:inline-flex; align-items:center; gap:8px;
-                    background:rgba(255,255,255,0.1); color:white;
-                    border:1px solid rgba(255,255,255,0.28);
-                    padding:13px 26px; border-radius:10px;
-                    font-weight:600; font-size:15px; text-decoration:none;
-                    font-family:'Outfit',sans-serif;">
-            <i class="fa-solid fa-tag"></i> Ver planes y precios
-          </a>
-        </div>
-      </div>
-
-      <!-- Características grid -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">⚖️</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">786+ Leyes</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Compendio actualizado</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">🔍</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Búsqueda Instantánea</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Por artículo o palabra</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📑</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Citas Automatizadas</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Listas para dictámenes</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">🌿</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Legislación Ambiental</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Compendio especializado</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📚</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Modo Estudio</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Favoritos y notas</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">💻</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">PC y Android</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Funciona sin internet</div>
-        </div>
-      </div>
-
-    </div>
+  <div class="about-text">
+   <p class="section-label">Sobre Nosotros</p>
+   <h2>Ing. Fernando Rafael<br>Ardón Rodríguez</h2>
+   <p class="lead">Profesional forestal con más de 40 años de experiencia, uniendo la técnica con la gestión estratégica.</p>
+   <p>SEDCAF integra experiencia técnica, precisión legal y herramientas digitales modernas para garantizar resultados confiables, trazables y de alto nivel profesional en el sector forestal y ambiental de Honduras.</p>
+   <ul class="feature-list">
+    <li><i class="fa-solid fa-circle-check"></i> Auditorías Técnicas y Legales</li>
+    <li><i class="fa-solid fa-circle-check"></i> Administración de Proyectos Forestales</li>
+    <li><i class="fa-solid fa-circle-check"></i> Gestión de Industrias y Comercio Forestal</li>
+    <li><i class="fa-solid fa-circle-check"></i> Capacitación y Extensión Rural</li>
+   </ul>
   </div>
+ </div>
 </section>
 
-<!-- ===== JURIS-GESTIÓN-PRO ===== -->
-<section id="jurisgestion" style="background: linear-gradient(135deg, #1E2410 0%, #6E7F3E 55%, #1E2410 100%); padding: 90px 24px;">
-  <div class="container">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
-
-      <!-- Texto -->
-      <div>
-        <p style="font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:14px;">Solución Tecnológica · SEDCAF</p>
-        <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-          <img src="https://ferardon.github.io/JURIS-GESTION-PRO/assets/img/logo_sedcaf.png"
-               alt="JURIS-GESTIÓN-PRO"
-               style="height:56px; width:56px; object-fit:contain;
-                      background:rgba(255,255,255,0.1); border-radius:12px; padding:8px;">
-          <h2 style="font-size:clamp(26px,4vw,40px); margin:0; color:white; letter-spacing:-1px; font-family:'Outfit',sans-serif;">JURIS-GESTIÓN-PRO</h2>
-        </div>
-        <p style="font-size:17px; color:rgba(255,255,255,0.88); line-height:1.65; margin-bottom:14px;">
-          Software de escritorio para <strong>gestión de expedientes judiciales, protocolo notarial y actuaciones procesales</strong>, diseñado para abogados y despachos legales en Honduras.
-        </p>
-        <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.65; margin-bottom:32px;">
-          CRM de clientes · Control de expedientes por juzgado · Libro de protocolo notarial · Dashboard con informes en PDF — 100% offline, marca blanca configurable.
-        </p>
-        <div style="display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="https://ferardon.github.io/JURIS-GESTION-PRO/" target="_blank"
-             style="display:inline-flex; align-items:center; gap:8px;
-                    background:#F2C94C; color:#1E2410; padding:13px 26px;
-                    border-radius:10px; font-weight:700; font-size:15px;
-                    text-decoration:none; font-family:'Outfit',sans-serif;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver más
-          </a>
-          <a href="https://github.com/FerArdon/JURIS-GESTION-PRO/releases/latest" target="_blank"
-             style="display:inline-flex; align-items:center; gap:8px;
-                    background:rgba(255,255,255,0.1); color:white;
-                    border:1px solid rgba(255,255,255,0.28);
-                    padding:13px 26px; border-radius:10px;
-                    font-weight:600; font-size:15px; text-decoration:none;
-                    font-family:'Outfit',sans-serif;">
-            <i class="fa-solid fa-download"></i> Descargar gratis
-          </a>
-        </div>
-      </div>
-
-      <!-- Módulos grid -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">👥</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">CRM de Clientes</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">DNI, RTN, historial</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📁</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Control de Expedientes</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Por juzgado y materia</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📋</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Actuaciones Procesales</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Audiencias e incidentes</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📜</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Protocolo Notarial</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Tomos y foliación</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">📊</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Dashboard e Informes</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Estadísticas en PDF</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:20px;">
-          <div style="font-size:26px; margin-bottom:8px;">⚙️</div>
-          <div style="font-weight:700; font-size:14px; color:white; margin-bottom:4px;">Marca Blanca</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.55);">Logo y PIN de acceso</div>
-        </div>
-      </div>
-
-    </div>
+<section id="servicios" class="section">
+ <div class="container">
+  <div class="section-header">
+   <p class="section-label">Lo Que Ofrecemos</p>
+   <h2>Nuestros <span class="grad-text">Servicios</span></h2>
+   <p class="sub">Soluciones integrales para el sector forestal y ambiental de Honduras.</p>
   </div>
+  <div class="services-grid">
+   <div class="svc"><div class="icon"><i class="fa-solid fa-clipboard-check"></i></div><h3>Auditorías Técnicas</h3><p>Verificación de planes operativos y cumplimiento normativo en industrias forestales.</p><span class="more">Ver más →</span></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-gavel"></i></div><h3>Servicios Legales</h3><p>Asesoría en trámites administrativos y dictámenes técnicos para casos judiciales.</p><span class="more">Ver más →</span></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-seedling"></i></div><h3>Manejo Forestal</h3><p>Instalación de viveros, planes de manejo forestal y silvicultura avanzada.</p><span class="more">Ver más →</span></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-diagram-project"></i></div><h3>Administración de Proyectos</h3><p>Gerencia de proyectos forestales, diagnósticos socioeconómicos y extensión comunitaria.</p><span class="more">Ver más →</span></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-globe"></i></div><h3>Importación y Exportación</h3><p>Asesoría en la gerencia de empresas dedicadas al comercio internacional de madera.</p><span class="more">Ver más →</span></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div><h3>Capacitación</h3><p>Formación técnica y desarrollo de capacidades para personal técnico y comunidades rurales.</p><span class="more">Ver más →</span></div>
+  </div>
+ </div>
 </section>
 
-<!-- ===== CTA ===== -->
-<section class="cta-section">
-    <div class="container cta-content">
-        <h2>¿Listo para optimizar su gestión forestal?</h2>
-        <p>Contáctenos hoy para una evaluación personalizada sin compromiso.</p>
-        <a href="#contacto" class="btn btn-light">Solicitar Asesoría</a>
+<section id="productos" class="section products">
+ <div class="container">
+  <div class="section-header">
+   <p class="section-label">Soluciones Tecnológicas</p>
+   <h2>Software desarrollado <span class="grad-text">por SEDCAF</span></h2>
+  </div>
+
+  <div class="product-card">
+   <div>
+    <span class="tag">Gestión Forestal</span>
+    <h3>SilvaDesk Pro</h3>
+    <p>Software profesional para ingenieros forestales, regentes y consultores registrados en COLPROFORH. Protocolo Judicial FEMA · Bitácora TFC · Facturador · Dashboard — todo sin internet.</p>
+    <div class="product-actions">
+     <a href="https://ferardon.github.io/SilvaDeskPro/" class="btn btn-lima">Ver más</a>
+     <a href="https://github.com/FerArdon/SilvaDeskPro/releases/latest" class="btn btn-ghost"><i class="fa-solid fa-download"></i> Descargar gratis</a>
     </div>
+   </div>
+   <div class="grid-chips">
+    <div class="gchip"><b>⚖️ Protocolo Judicial</b><span>Actas para FEMA y juzgados</span></div>
+    <div class="gchip"><b>📓 Bitácora TFC</b><span>Registros de campo normados</span></div>
+    <div class="gchip"><b>🌿 Arancel COLPROFORH</b><span>Calculadora tarifas 2024</span></div>
+    <div class="gchip"><b>🗺️ Mapa de Predios</b><span>Gestión geoespacial</span></div>
+   </div>
+  </div>
+
+  <div class="product-card">
+   <div>
+    <span class="tag">Buscador Jurídico</span>
+    <h3>IURIS HN</h3>
+    <p>Buscador jurídico inteligente con acceso a 786 leyes vigentes de Honduras, para abogados, fiscales, jueces y estudiantes de Derecho. Disponible en PC y Android, sin internet.</p>
+    <div class="product-actions">
+     <a href="https://ferardon.github.io/sedcaf/iurishn/" class="btn btn-lima">Ver más</a>
+     <a href="https://ferardon.github.io/sedcaf/iurishn/#precios" class="btn btn-ghost">Planes y precios</a>
+    </div>
+   </div>
+   <div class="grid-chips">
+    <div class="gchip"><b>⚖️ 786+ Leyes</b><span>Compendio actualizado</span></div>
+    <div class="gchip"><b>🔍 Búsqueda Instantánea</b><span>Por artículo o palabra</span></div>
+    <div class="gchip"><b>📑 Citas Automatizadas</b><span>Listas para dictámenes</span></div>
+    <div class="gchip"><b>💻 PC y Android</b><span>Funciona sin internet</span></div>
+   </div>
+  </div>
+
+  <div class="product-card">
+   <div>
+    <span class="tag">Gestión Legal</span>
+    <h3>JURIS-GESTIÓN-PRO</h3>
+    <p>Software de escritorio para gestión de expedientes judiciales, protocolo notarial y actuaciones procesales. 100% offline, marca blanca configurable.</p>
+    <div class="product-actions">
+     <a href="https://ferardon.github.io/JURIS-GESTION-PRO/" class="btn btn-lima">Ver más</a>
+     <a href="https://github.com/FerArdon/JURIS-GESTION-PRO/releases/latest" class="btn btn-ghost"><i class="fa-solid fa-download"></i> Descargar gratis</a>
+    </div>
+   </div>
+   <div class="grid-chips">
+    <div class="gchip"><b>👥 CRM de Clientes</b><span>DNI, RTN, historial</span></div>
+    <div class="gchip"><b>📁 Control de Expedientes</b><span>Por juzgado y materia</span></div>
+    <div class="gchip"><b>📜 Protocolo Notarial</b><span>Tomos y foliación</span></div>
+    <div class="gchip"><b>⚙️ Marca Blanca</b><span>Logo y PIN de acceso</span></div>
+   </div>
+  </div>
+ </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section id="contacto" class="contact-section section">
-    <div class="container">
-        <div class="section-header">
-            <p class="section-label">Hablemos</p>
-            <h2>Información de Contacto</h2>
-        </div>
-        <div class="contact-wrapper">
-
-            <div class="contact-info">
-                <p>Estamos a su disposición para cualquier consulta o requerimiento técnico.</p>
-
-                <div class="info-item">
-                    <div class="info-icon"><i class="fa-solid fa-user"></i></div>
-                    <div>
-                        <strong>Consultor Principal</strong>
-                        <span>Ing. Fernando Rafael Ardón Rodríguez</span>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div>
-                        <strong>Ubicación</strong>
-                        <span>Tegucigalpa M.D.C., Honduras, C.A.</span>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <div>
-                        <strong>Correo Electrónico</strong>
-                        <span><a href="mailto:sedcaf.consultores@outlook.com">sedcaf.consultores@outlook.com</a></span>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                    <div>
-                        <strong>WhatsApp</strong>
-                        <span>Escríbenos con el botón flotante 💬</span>
-                    </div>
-                </div>
-            </div>
-
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" id="name" name="name" placeholder="Su nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="su@correo.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Asunto</label>
-                    <input type="text" id="subject" name="subject" placeholder="¿En qué podemos ayudarle?">
-                </div>
-                <div class="form-group">
-                    <label for="message">Mensaje</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Describa su consulta..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-full">
-                    <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
-                </button>
-                <p class="form-note" id="formNote"></p>
-            </form>
-
-        </div>
-    </div>
+<section class="cta">
+ <h2>¿Listo para optimizar su <span class="grad-text">gestión forestal</span>?</h2>
+ <p>Contáctenos hoy para una evaluación personalizada sin compromiso.</p>
+ <a href="#contacto" class="btn btn-lima">Solicitar Asesoría <i class="fa-solid fa-arrow-right"></i></a>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-    <div class="container footer-inner">
-        <div class="footer-brand">
-            <img src="assets/img/logo_sedcaf.png" alt="SEDCAF" class="footer-logo">
-            <p>Consultoría y Asesoría Forestal<br>Tegucigalpa, Honduras</p>
-        </div>
-        <div class="footer-links">
-            <h4>Navegación</h4>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#about">Sobre Mí</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#silvadesk">SilvaDesk Pro</a></li>
-                <li><a href="#iurishn">IURIS HN</a></li>
-                <li><a href="#jurisgestion">JURIS-GESTIÓN-PRO</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </div>
-        <div class="footer-contact">
-            <h4>Contacto</h4>
-            <p><i class="fa-solid fa-envelope"></i> sedcaf.consultores@outlook.com</p>
-            <p><i class="fa-solid fa-location-dot"></i> Tegucigalpa, Honduras</p>
-            <div class="social-links">
-                <a href="https://wa.me/50433527444" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados.</p>
-    </div>
+<section id="contacto" class="section about">
+ <div class="container">
+  <div class="section-header">
+   <p class="section-label">Hablemos</p>
+   <h2>Información de <span class="grad-text">Contacto</span></h2>
+  </div>
+  <div class="contact-wrap">
+   <div>
+    <p style="color:var(--gris)">Estamos a su disposición para cualquier consulta o requerimiento técnico.</p>
+    <div class="info-item"><div class="info-icon"><i class="fa-solid fa-user"></i></div><div><strong>Consultor Principal</strong><span>Ing. Fernando Rafael Ardón Rodríguez</span></div></div>
+    <div class="info-item"><div class="info-icon"><i class="fa-solid fa-location-dot"></i></div><div><strong>Ubicación</strong><span>Tegucigalpa M.D.C., Honduras, C.A.</span></div></div>
+    <div class="info-item"><div class="info-icon"><i class="fa-solid fa-envelope"></i></div><div><strong>Correo Electrónico</strong><span>sedcaf.consultores@outlook.com</span></div></div>
+    <div class="info-item"><div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div><div><strong>WhatsApp</strong><span>Escríbenos con el botón flotante 💬</span></div></div>
+   </div>
+   <form class="form">
+    <div class="fg"><label>Nombre completo</label><input type="text" placeholder="Su nombre"></div>
+    <div class="fg"><label>Correo electrónico</label><input type="email" placeholder="su@correo.com"></div>
+    <div class="fg"><label>Asunto</label><input type="text" placeholder="¿En qué podemos ayudarle?"></div>
+    <div class="fg"><label>Mensaje</label><textarea rows="5" placeholder="Describa su consulta..."></textarea></div>
+    <button type="button" class="btn btn-lima" style="width:100%;justify-content:center"><i class="fa-solid fa-paper-plane"></i> Enviar Mensaje</button>
+   </form>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="container footer-grid">
+  <div>
+   <img src="assets/img/logo_sedcaf.png" alt="SEDCAF" class="footer-logo">
+   <p>Consultoría y Asesoría Forestal<br>Tegucigalpa, Honduras</p>
+  </div>
+  <div>
+   <h4>Navegación</h4>
+   <ul><li><a href="#inicio">Inicio</a></li><li><a href="#about">Sobre Mí</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#contacto">Contacto</a></li></ul>
+  </div>
+  <div>
+   <h4>Contacto</h4>
+   <p><i class="fa-solid fa-envelope"></i> sedcaf.consultores@outlook.com</p>
+   <p><i class="fa-solid fa-location-dot"></i> Tegucigalpa, Honduras</p>
+  </div>
+ </div>
+ <div class="footer-bottom"><p>© 2026 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados.</p></div>
 </footer>
 
-<!-- ===== MODALES DE SERVICIOS ===== -->
-
-<!-- Modal: Auditorías Técnicas -->
-<div class="modal-overlay" id="modal-auditorias" role="dialog" aria-modal="true" aria-labelledby="modal-auditorias-title">
-    <div class="modal-box">
-        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-        <h3 id="modal-auditorias-title">Auditorías Técnicas</h3>
-        <p class="modal-lead">Verificación rigurosa del cumplimiento técnico, operativo y normativo en el sector forestal de Honduras, conforme a la Ley Forestal, Áreas Protegidas y Vida Silvestre (LFAPVS) y reglamentos del ICF.</p>
-        <ul class="modal-list">
-            <li><i class="fa-solid fa-circle-check"></i> Revisión de Planes de Manejo Forestal (PMF) y Planes Operativos Anuales (POA)</li>
-            <li><i class="fa-solid fa-circle-check"></i> Verificación del cumplimiento de volúmenes, especies autorizadas y áreas de aprovechamiento</li>
-            <li><i class="fa-solid fa-circle-check"></i> Auditoría de industrias forestales: aserraderos, depósitos y centros de transformación</li>
-            <li><i class="fa-solid fa-circle-check"></i> Evaluación de guías de transporte forestal y cadena de custodia</li>
-            <li><i class="fa-solid fa-circle-check"></i> Análisis de regencia forestal y responsabilidad técnica</li>
-            <li><i class="fa-solid fa-circle-check"></i> Elaboración de informes técnicos periciales para procesos administrativos o judiciales</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
-    </div>
-</div>
-
-<!-- Modal: Servicios Legales -->
-<div class="modal-overlay" id="modal-legales" role="dialog" aria-modal="true" aria-labelledby="modal-legales-title">
-    <div class="modal-box">
-        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-icon"><i class="fa-solid fa-gavel"></i></div>
-        <h3 id="modal-legales-title">Servicios Legales Forestales</h3>
-        <p class="modal-lead">Apoyo técnico-jurídico especializado para procesos administrativos, investigaciones penales y litigios relacionados con el aprovechamiento, tráfico y daño a los recursos forestales.</p>
-        <ul class="modal-list">
-            <li><i class="fa-solid fa-circle-check"></i> Elaboración de dictámenes técnicos periciales para el Ministerio Público y juzgados</li>
-            <li><i class="fa-solid fa-circle-check"></i> Cuantificación de daños forestales y valoración económica del recurso afectado</li>
-            <li><i class="fa-solid fa-circle-check"></i> Asesoría en trámites de permisos, habilitaciones y recursos ante el ICF</li>
-            <li><i class="fa-solid fa-circle-check"></i> Gestión de resoluciones administrativas y apelaciones ante FEMA</li>
-            <li><i class="fa-solid fa-circle-check"></i> Acompañamiento técnico en inspecciones de campo con autoridades</li>
-            <li><i class="fa-solid fa-circle-check"></i> Análisis de cumplimiento normativo bajo la LFAPVS, Código Penal y reglamentos ICF</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
-    </div>
-</div>
-
-<!-- Modal: Manejo Forestal -->
-<div class="modal-overlay" id="modal-manejo" role="dialog" aria-modal="true" aria-labelledby="modal-manejo-title">
-    <div class="modal-box">
-        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-icon"><i class="fa-solid fa-seedling"></i></div>
-        <h3 id="modal-manejo-title">Manejo Forestal</h3>
-        <p class="modal-lead">Planificación y ejecución de actividades silvícolas para el aprovechamiento sostenible, conservación y restauración de ecosistemas forestales en Honduras.</p>
-        <ul class="modal-list">
-            <li><i class="fa-solid fa-circle-check"></i> Elaboración de Planes de Manejo Forestal (PMF) y Planes Operativos Anuales (POA)</li>
-            <li><i class="fa-solid fa-circle-check"></i> Inventarios forestales y evaluación de existencias maderables</li>
-            <li><i class="fa-solid fa-circle-check"></i> Diseño e instalación de viveros forestales nativos y exóticos</li>
-            <li><i class="fa-solid fa-circle-check"></i> Aplicación de tratamientos silvícolas: raleos, podas, enriquecimiento</li>
-            <li><i class="fa-solid fa-circle-check"></i> Planificación de reforestación y restauración de áreas degradadas</li>
-            <li><i class="fa-solid fa-circle-check"></i> Monitoreo de crecimiento y estado fitosanitario de plantaciones forestales</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
-    </div>
-</div>
-
-<!-- Modal: Administración de Proyectos -->
-<div class="modal-overlay" id="modal-proyectos" role="dialog" aria-modal="true" aria-labelledby="modal-proyectos-title">
-    <div class="modal-box">
-        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-icon"><i class="fa-solid fa-diagram-project"></i></div>
-        <h3 id="modal-proyectos-title">Administración de Proyectos Forestales</h3>
-        <p class="modal-lead">Gerencia integral de proyectos forestales y ambientales desde su formulación hasta la evaluación de resultados, con enfoque en sostenibilidad y desarrollo comunitario.</p>
-        <ul class="modal-list">
-            <li><i class="fa-solid fa-circle-check"></i> Formulación y evaluación de proyectos forestales y agroforestales</li>
-            <li><i class="fa-solid fa-circle-check"></i> Diagnósticos socioeconómicos y líneas base en comunidades rurales</li>
-            <li><i class="fa-solid fa-circle-check"></i> Planificación estratégica y operativa de empresas forestales</li>
-            <li><i class="fa-solid fa-circle-check"></i> Coordinación de equipos técnicos interdisciplinarios en campo</li>
-            <li><i class="fa-solid fa-circle-check"></i> Diseño e implementación de sistemas agroforestales y silvopastoriles</li>
-            <li><i class="fa-solid fa-circle-check"></i> Elaboración de informes de avance, memorias técnicas y reportes a donantes</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
-    </div>
-</div>
-
-<!-- Modal: Importación y Exportación -->
-<div class="modal-overlay" id="modal-comercio" role="dialog" aria-modal="true" aria-labelledby="modal-comercio-title">
-    <div class="modal-box">
-        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-icon"><i class="fa-solid fa-globe"></i></div>
-        <h3 id="modal-comercio-title">Importación y Exportación Forestal</h3>
-        <p class="modal-lead">Asesoría especializada para empresas del sector maderero que operan en el comercio nacional e internacional, garantizando el cumplimiento de regulaciones fitosanitarias, aduaneras y forestales.</p>
-        <ul class="modal-list">
-            <li><i class="fa-solid fa-circle-check"></i> Gestión de permisos de exportación de madera y productos forestales ante el ICF</li>
-            <li><i class="fa-solid fa-circle-check"></i> Trámites de certificados fitosanitarios y documentación aduanera</li>
-            <li><i class="fa-solid fa-circle-check"></i> Asesoría en requisitos CITES para especies forestales reguladas</li>
-            <li><i class="fa-solid fa-circle-check"></i> Evaluación de cadenas de suministro y trazabilidad de productos madereros</li>
-            <li><i class="fa-solid fa-circle-check"></i> Gerencia de industrias dedicadas a la transformación y comercialización de madera</li>
-            <li><i class="fa-solid fa-circle-check"></i> Optimización de procesos logísticos y cumplimiento de estándares internacionales</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
-    </div>
-</div>
-
-<!-- Modal: Capacitación -->
-<div class="modal-overlay" id="modal-capacitacion" role="dialog" aria-modal="true" aria-labelledby="modal-capacitacion-title">
-    <div class="modal-box">
-        <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
-        <h3 id="modal-capacitacion-title">Capacitación y Extensión Rural</h3>
-        <p class="modal-lead">Programas de formación técnica diseñados para fortalecer las capacidades del personal institucional, empresarial y comunitario en temas forestales, ambientales y de gestión de recursos naturales.</p>
-        <ul class="modal-list">
-            <li><i class="fa-solid fa-circle-check"></i> Talleres sobre normativa forestal hondureña: LFAPVS, reglamentos ICF y Código Penal ambiental</li>
-            <li><i class="fa-solid fa-circle-check"></i> Formación en silvicultura, dasonomía y aprovechamiento forestal sostenible</li>
-            <li><i class="fa-solid fa-circle-check"></i> Capacitación en uso de SIG, QGIS y herramientas de teledetección aplicadas al sector forestal</li>
-            <li><i class="fa-solid fa-circle-check"></i> Extensión rural para comunidades en manejo de recursos naturales y agroforestería</li>
-            <li><i class="fa-solid fa-circle-check"></i> Cursos para personal técnico judicial en peritaje forestal y evidencia geoespacial</li>
-            <li><i class="fa-solid fa-circle-check"></i> Diseño de manuales operativos y material didáctico institucional</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary modal-cta">Solicitar Servicio</a>
-    </div>
-</div>
-
-<!-- Botón flotante de WhatsApp -->
 <a href="#" id="waFloatBtn" class="wa-float-btn" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 5L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.85 14.06c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09 1-2.37.24-.26.53-.32.7-.32.18 0 .35 0 .5.01.16.01.38-.06.6.46.24.55.79 1.9.86 2.04.07.14.11.3.02.49-.09.19-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.45.12.61-.07.16-.19.7-.81.89-1.09.19-.28.38-.23.63-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>
 </a>
 
-<script src="assets/js/script.js"></script>
 <script>
-    // Botón flotante de WhatsApp (número ofuscado)
+    // Boton flotante de WhatsApp (numero ofuscado)
     (function(){
         var c = [53,48,52,51,51,53,50,55,52,52,52];
         var n = String.fromCharCode.apply(null, c);
@@ -644,9 +342,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-

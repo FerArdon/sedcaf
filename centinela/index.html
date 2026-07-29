@@ -17,15 +17,16 @@
 
 <style>
 :root {
-  --bg-primary: #06120b;
-  --bg-secondary: #0a1f14;
-  --bg-card: rgba(20, 46, 32, 0.65);
-  --accent-verde: #4ade80;
-  --accent-verde-hover: #22c55e;
-  --accent-verde-glow: rgba(74, 222, 128, 0.2);
+  --bg-primary: #0a0e11;
+  --bg-secondary: #10161a;
+  --bg-card: rgba(31, 41, 46, 0.55);
+  --accent-verde: #c1785a;
+  --accent-verde-hover: #d99b7d;
+  --accent-verde-glow: rgba(193, 120, 90, 0.18);
+  --accent-azul: #3e7c9c;
   --text-primary: #ffffff;
-  --text-secondary: #a3b3ab;
-  --text-muted: #6b8478;
+  --text-secondary: #a3aeb3;
+  --text-muted: #6b7a84;
   --border-soft: rgba(255,255,255,0.08);
   --font-title: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -44,13 +45,13 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-title); font-size: 0.95rem;
   transition: all 0.25s ease; border: none; cursor: pointer;
 }
-.btn-primary { background: linear-gradient(135deg, var(--accent-verde) 0%, #16a34a 100%); color: #06120b; box-shadow: 0 4px 20px var(--accent-verde-glow); }
+.btn-primary { background: linear-gradient(135deg, var(--accent-verde) 0%, var(--accent-azul) 100%); color: #1a130f; box-shadow: 0 4px 20px var(--accent-verde-glow); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--accent-verde-glow); }
 .btn-outline { border: 1.5px solid var(--border-soft); color: var(--text-primary); }
 .btn-outline:hover { border-color: var(--accent-verde); color: var(--accent-verde); }
 
 /* Navbar */
-.navbar { position: sticky; top: 0; z-index: 100; background: rgba(6,18,11,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-soft); }
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(10,14,17,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-soft); }
 .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
 .logo-wrap { display: flex; align-items: center; gap: 10px; }
 .logo-img { width: 38px; height: 38px; border-radius: 8px; }
@@ -67,9 +68,9 @@ img { max-width: 100%; display: block; }
 .hero-bg-glow { position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(circle, var(--accent-verde-glow) 0%, transparent 70%); pointer-events: none; }
 .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; position: relative; z-index: 1; }
 @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
-.tag-pill { display: inline-block; background: var(--accent-verde-glow); border: 1px solid rgba(74,222,128,0.3); color: var(--accent-verde); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 20px; font-weight: 700; }
+.tag-pill { display: inline-block; background: var(--accent-verde-glow); border: 1px solid rgba(193,120,90,0.35); color: var(--accent-verde); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 20px; font-weight: 700; }
 .hero-title { font-size: clamp(2.1rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
-.gradient-text { background: linear-gradient(135deg, var(--accent-verde), #86efac); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.gradient-text { background: linear-gradient(135deg, var(--accent-verde), var(--accent-azul)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero-subtitle { color: var(--text-secondary); font-size: 1.05rem; max-width: 520px; margin-bottom: 32px; }
 @media (max-width: 900px) { .hero-subtitle { margin: 0 auto 32px; } }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
@@ -106,7 +107,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 950px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
 .step-card { text-align: center; }
-.step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-verde); color: #06120b; font-weight: 800; font-family: var(--font-title); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+.step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-verde); color: #1a130f; font-weight: 800; font-family: var(--font-title); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
 .step-card h4 { font-size: 0.95rem; margin-bottom: 6px; }
 .step-card p { color: var(--text-secondary); font-size: 0.85rem; }
 

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centinela Ambiental-HN — Reporta Daños Ambientales en Honduras</title>
+<meta name="description" content="App gratuita para reportar daños ambientales en Honduras de forma anónima, con fotos y ubicación, incluso sin conexión a internet.">
+
+<meta property="og:title" content="Centinela Ambiental-HN — Reporta Daños Ambientales">
+<meta property="og:description" content="App gratuita y anónima para denunciar daños ambientales en Honduras, funciona sin internet.">
+<meta property="og:url" content="https://ferardon.github.io/sedcaf/centinela/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --bg-primary: #06120b;
+  --bg-secondary: #0a1f14;
+  --bg-card: rgba(20, 46, 32, 0.65);
+  --accent-verde: #4ade80;
+  --accent-verde-hover: #22c55e;
+  --accent-verde-glow: rgba(74, 222, 128, 0.2);
+  --text-primary: #ffffff;
+  --text-secondary: #a3b3ab;
+  --text-muted: #6b8478;
+  --border-soft: rgba(255,255,255,0.08);
+  --font-title: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --container-width: 1180px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; }
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+h1, h2, h3, h4 { font-family: var(--font-title); }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px; border-radius: 12px; font-weight: 700;
+  font-family: var(--font-title); font-size: 0.95rem;
+  transition: all 0.25s ease; border: none; cursor: pointer;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent-verde) 0%, #16a34a 100%); color: #06120b; box-shadow: 0 4px 20px var(--accent-verde-glow); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--accent-verde-glow); }
+.btn-outline { border: 1.5px solid var(--border-soft); color: var(--text-primary); }
+.btn-outline:hover { border-color: var(--accent-verde); color: var(--accent-verde); }
+
+/* Navbar */
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(6,18,11,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-soft); }
+.nav-container { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
+.logo-wrap { display: flex; align-items: center; gap: 10px; }
+.logo-img { width: 38px; height: 38px; border-radius: 8px; }
+.logo-text { font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; }
+.accent-verde { color: var(--accent-verde); }
+.nav-links { display: flex; align-items: center; gap: 26px; list-style: none; }
+.nav-links a { color: var(--text-secondary); font-size: 0.92rem; font-weight: 500; }
+.nav-links a:hover { color: var(--accent-verde); }
+.back-to-sedcaf { display: flex; align-items: center; gap: 6px; }
+@media (max-width: 860px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero-section { padding: 90px 0 70px; position: relative; overflow: hidden; }
+.hero-bg-glow { position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(circle, var(--accent-verde-glow) 0%, transparent 70%); pointer-events: none; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; position: relative; z-index: 1; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
+.tag-pill { display: inline-block; background: var(--accent-verde-glow); border: 1px solid rgba(74,222,128,0.3); color: var(--accent-verde); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 20px; font-weight: 700; }
+.hero-title { font-size: clamp(2.1rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+.gradient-text { background: linear-gradient(135deg, var(--accent-verde), #86efac); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-subtitle { color: var(--text-secondary); font-size: 1.05rem; max-width: 520px; margin-bottom: 32px; }
+@media (max-width: 900px) { .hero-subtitle { margin: 0 auto 32px; } }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 900px) { .hero-actions { justify-content: center; } }
+
+.phone-mockup { width: 280px; margin: 0 auto; background: #0a1f14; border: 8px solid #142e20; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); overflow: hidden; }
+.phone-screen { background: #f5f7f6; padding: 16px 14px; min-height: 480px; }
+.mock-header { background: #0d3822; color: white; padding: 14px; border-radius: 10px; text-align: center; font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; }
+.mock-status { background: #dcfce7; color: #166534; font-size: 0.7rem; text-align: center; padding: 6px; border-radius: 6px; margin-bottom: 12px; font-weight: 600; }
+.mock-card { background: white; border-radius: 10px; padding: 12px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.mock-card h5 { font-size: 0.78rem; color: #0d3822; margin-bottom: 8px; }
+.mock-field { background: #f3f4f6; border-radius: 6px; height: 26px; margin-bottom: 8px; }
+.mock-radio { display: flex; align-items: center; gap: 6px; font-size: 0.65rem; color: #374151; margin-bottom: 5px; }
+.mock-radio span { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #16a34a; }
+.mock-btn { background: #1B6B3A; color: white; text-align: center; padding: 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; }
+
+/* Features */
+.features-section { padding: 70px 0; }
+.section-header { text-align: center; max-width: 620px; margin: 0 auto 50px; }
+.sub-label { color: var(--accent-verde); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; }
+.section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin: 10px 0 12px; }
+.section-desc { color: var(--text-secondary); }
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 950px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
+.feature-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 16px; padding: 28px 22px; }
+.feature-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-verde-glow); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--accent-verde); margin-bottom: 16px; }
+.feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.feature-card p { color: var(--text-secondary); font-size: 0.9rem; }
+
+/* Pasos */
+.steps-section { padding: 70px 0; background: var(--bg-secondary); }
+.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 40px; }
+@media (max-width: 950px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
+.step-card { text-align: center; }
+.step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-verde); color: #06120b; font-weight: 800; font-family: var(--font-title); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+.step-card h4 { font-size: 0.95rem; margin-bottom: 6px; }
+.step-card p { color: var(--text-secondary); font-size: 0.85rem; }
+
+/* Instalar */
+.instalar-section { padding: 70px 0; }
+.instalar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media (max-width: 800px) { .instalar-grid { grid-template-columns: 1fr; } }
+.instalar-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 16px; padding: 28px; }
+.instalar-card h3 { color: var(--accent-verde); margin-bottom: 16px; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+.instalar-card ol { padding-left: 20px; color: var(--text-secondary); font-size: 0.92rem; }
+.instalar-card li { margin-bottom: 10px; }
+
+/* Legal note */
+.legal-section { padding: 50px 0 80px; }
+.legal-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-left: 4px solid var(--accent-verde); border-radius: 12px; padding: 26px 30px; max-width: 900px; margin: 0 auto; }
+.legal-card h4 { color: var(--accent-verde); margin-bottom: 10px; font-size: 1rem; }
+.legal-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px; }
+
+/* CTA final */
+.cta-final { text-align: center; padding: 70px 0 90px; }
+.cta-final h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+.cta-final p { color: var(--text-secondary); margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+/* Footer */
+.footer { border-top: 1px solid var(--border-soft); padding: 40px 0 24px; }
+.footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 24px; }
+.footer p { color: var(--text-muted); font-size: 0.85rem; }
+.footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border-soft); padding-top: 20px; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo-wrap">
+      <img src="assets/logo_centinela.png" class="logo-img" alt="Centinela Ambiental-HN">
+      <span class="logo-text">Centinela <span class="accent-verde">Ambiental-HN</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Cómo Funciona</a></li>
+      <li><a href="#instalar">Instalar</a></li>
+      <li><a href="../" class="back-to-sedcaf"><i class="fa-solid fa-arrow-left"></i> Volver a SEDCAF</a></li>
+      <li><a href="https://ferardon.github.io/centinela-ambiental-hn/" class="btn btn-primary" style="padding:9px 18px;">Reportar Ahora</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero-section">
+  <div class="hero-bg-glow"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="tag-pill">100% Gratuito · Anónimo</span>
+      <h1 class="hero-title">Reporta un daño ambiental<br><span class="gradient-text">sin dar tu nombre</span></h1>
+      <p class="hero-subtitle">
+        Tala ilegal, contaminación de agua, caza furtiva, vertidos químicos — documenta el hallazgo con fotos y ubicación desde tu celular. Funciona incluso sin señal: tu reporte se guarda y se envía solo cuando vuelve la conexión.
+      </p>
+      <div class="hero-actions">
+        <a href="https://ferardon.github.io/centinela-ambiental-hn/" class="btn btn-primary"><i class="fa-solid fa-triangle-exclamation"></i> Registrar una Denuncia</a>
+        <a href="https://ferardon.github.io/centinela-ambiental-hn/#mapa" class="btn btn-outline"><i class="fa-solid fa-map-location-dot"></i> Ver Mapa Público</a>
+      </div>
+    </div>
+
+    <div class="phone-mockup">
+      <div class="phone-screen">
+        <div class="mock-header">🌳 Centinela Ambiental-HN</div>
+        <div class="mock-status">🟢 Conectado — los reportes se envían al instante</div>
+        <div class="mock-card">
+          <h5>📍 ¿Dónde ocurrió?</h5>
+          <div class="mock-field"></div>
+          <div class="mock-field" style="margin-top:6px;"></div>
+        </div>
+        <div class="mock-card">
+          <h5>⚖️ Gravedad del daño</h5>
+          <div class="mock-radio"><span></span> Puntual (menos de 0.1 ha)</div>
+          <div class="mock-radio"><span style="background:#16a34a;border-color:#16a34a;"></span> Localizada (0.1 a 2 ha)</div>
+          <div class="mock-radio"><span></span> Extensa (2 a 10 ha)</div>
+        </div>
+        <div class="mock-card">
+          <h5>🕵️ Tu identidad</h5>
+          <div class="mock-field" style="max-width:100px;"></div>
+        </div>
+        <div class="mock-btn">✅ Guardar Reporte</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="como-funciona" class="features-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">¿Por qué usarla?</span>
+      <h2 class="section-title">Diseñada para uso real en el campo</h2>
+      <p class="section-desc">Pensada para guardaparques, estudiantes, técnicos forestales y cualquier ciudadano que quiera contribuir a la protección ambiental de Honduras.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-user-secret"></i></div>
+        <h3>100% Anónimo</h3>
+        <p>No pide nombre real, cédula, teléfono ni ningún dato que te identifique. El alias es opcional.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-signal"></i></div>
+        <h3>Funciona sin Internet</h3>
+        <p>Si estás en una zona sin señal, tu reporte se guarda en el teléfono y se envía solo al recuperar conexión.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-camera"></i></div>
+        <h3>Evidencia con Fotos</h3>
+        <p>Adjunta hasta 3 fotografías del hallazgo, tomadas en el momento con la cámara del celular.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h3>Mapa Público</h3>
+        <p>Consulta todos los reportes del país en un mapa interactivo, clasificados por nivel de gravedad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">Simple y rápido</span>
+      <h2 class="section-title">Cómo se registra un reporte</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Describe el sitio</h4>
+        <p>Nombre del lugar, departamento y ubicación GPS (opcional pero recomendada).</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Cuenta qué pasó</h4>
+        <p>Tipo de daño, descripción libre, y hasta 3 fotos como evidencia.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Responde 4 preguntas</h4>
+        <p>El sistema calcula automáticamente la gravedad — no requiere conocimientos técnicos.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4>Guarda y listo</h4>
+        <p>Se envía al instante, o se guarda en tu teléfono si no hay señal, y se sincroniza después.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="instalar" class="instalar-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">Sin tienda de aplicaciones</span>
+      <h2 class="section-title">Instálala en tu celular</h2>
+      <p class="section-desc">No necesitas Play Store ni App Store — se instala directo desde el navegador.</p>
+    </div>
+
+    <div class="instalar-grid">
+      <div class="instalar-card">
+        <h3><i class="fa-brands fa-android"></i> Android (Chrome)</h3>
+        <ol>
+          <li>Abre <a href="https://ferardon.github.io/centinela-ambiental-hn/" style="color:var(--accent-verde);">ferardon.github.io/centinela-ambiental-hn</a> en Chrome.</li>
+          <li>Toca el menú (⋮, arriba a la derecha).</li>
+          <li>Elige <b>"Instalar app"</b> o <b>"Agregar a pantalla de inicio"</b>.</li>
+          <li>Confirma. Queda un ícono en tu celular que abre la app directo.</li>
+        </ol>
+      </div>
+      <div class="instalar-card">
+        <h3><i class="fa-brands fa-apple"></i> iPhone (Safari)</h3>
+        <ol>
+          <li>Abre el mismo enlace en Safari.</li>
+          <li>Toca el ícono de compartir 📤.</li>
+          <li>Elige <b>"Agregar a Inicio"</b> y confirma.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="legal-section">
+  <div class="container">
+    <div class="legal-card">
+      <h4><i class="fa-solid fa-scale-balanced"></i> Nota sobre uso institucional (FEMA y autoridades)</h4>
+      <p>Centinela Ambiental-HN es un sistema de reporte ciudadano y monitoreo temprano — no reemplaza la cadena de custodia legal formal. Una vez enviado, ningún reporte puede editarse ni eliminarse, lo que preserva su integridad como evidencia preliminar. Se recomienda verificación técnica independiente en campo antes de sustentar una actuación legal.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <h2>Cada reporte <span class="gradient-text">ayuda a proteger Honduras</span></h2>
+    <p>Contribuye hoy mismo — toma menos de 2 minutos y no necesitas dar tu identidad.</p>
+    <a href="https://ferardon.github.io/centinela-ambiental-hn/" class="btn btn-primary"><i class="fa-solid fa-leaf"></i> Registrar una Denuncia Ahora</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo-wrap"><span class="logo-text">Centinela <span class="accent-verde">Ambiental-HN</span></span></div>
+        <p>Reporte ciudadano de daños ambientales en Honduras.</p>
+      </div>
+      <div>
+        <p>Desarrollado por <strong>SEDCAF</strong>.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Centinela Ambiental-HN | SEDCAF Consultores. Tegucigalpa, Honduras.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

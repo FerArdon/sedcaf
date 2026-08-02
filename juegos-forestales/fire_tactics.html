@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIRE-TACTICS - Liga de Combate de Incendios Forestales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <meta name="theme-color" content="#070B09">
+  <style>
+    .fire-game-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fire-hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .weather-widget {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+    }
+
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      background: #080D0A;
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px;
+    }
+
+    canvas#fireCanvas {
+      width: 100%;
+      max-width: 520px;
+      height: 320px;
+      background: #101913;
+      border-radius: 12px;
+      touch-action: none; /* Crucial for touch screens */
+      cursor: pointer;
+    }
+
+    .tactical-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .tactical-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      padding: 10px 4px;
+      border-radius: 10px;
+      font-family: var(--font-family);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .tactical-btn.active {
+      background: rgba(0, 230, 118, 0.25);
+      border-color: var(--primary-emerald);
+      box-shadow: 0 0 12px rgba(0, 230, 118, 0.4);
+    }
+
+    .speed-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .speed-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .speed-btn.active {
+      background: var(--accent-gold);
+      color: #000;
+      border-color: var(--accent-gold);
+    }
+
+    .budget-flash {
+      color: #FF3D00 !important;
+      animation: budgetShake 0.25s ease;
+    }
+
+    @keyframes budgetShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="app-container">
+    <!-- Header -->
+    <header class="app-header"><a href="https://ferardon.github.io/sedcaf/#productos" style="position:absolute;top:8px;left:8px;font-size:0.65rem;color:var(--text-muted);text-decoration:none;opacity:0.7;">← SEDCAF</a>
+      <div class="logo-area">
+        <span class="icon">🔥</span>
+        <div>
+          <h1 class="app-title">FIRE-TACTICS</h1>
+          <span class="app-subtitle">COMANDO TÁCTICO DE INCENDIOS 1v1</span>
+        </div>
+      </div>
+      <div class="user-profile-badge">
+        <div class="avatar">FA</div>
+        <div class="user-info">
+          <span class="user-name">Ing. Fer Ardón</span>
+          <span class="user-elo"><strong id="user-elo-val">1,510</strong> ELO</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" id="tab-fire">🔥 Incendio RTS</button>
+      <button class="tab-btn" onclick="window.location.href='silva_duel.html'">🌲 Silva-Duel</button>
+      <button class="tab-btn" onclick="window.location.href='index.html'">⚡ Arena Dendro</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- LOBBY SCREEN -->
+      <section id="fire-lobby" class="card glass">
+        <div class="arena-hero">
+          <div class="vs-badge">ESCENARIO: PINARES DE CORTEZ #30C — CONTRA RELOJ</div>
+          <h2>Comando de Incendios Interactivos</h2>
+          <p>Toca o arrastra el dedo en el mapa para trazar brechas cortafuegos, zanjas con tractor y descargas de agua. Contené el incendio en el menor tiempo posible y conservando la mayor cobertura viva.<br><small>💨 Viento: 22 km/h (Este)</small></p>
+        </div>
+
+        <div class="matchmaking-box">
+          <div class="player-card" style="margin:0 auto;">
+            <div class="avatar lg">FA</div>
+            <h3>Fer Ardón</h3>
+            <p class="uni">Comandante de Incidente</p>
+            <span class="badge elo" id="fire-best-badge">Mejor tiempo: --:--</span>
+          </div>
+        </div>
+
+        <button id="btn-start-fire-game" class="btn btn-primary btn-block">
+          <span>🔥 INICIAR SIMULACIÓN CONTRA RELOJ</span>
+        </button>
+      </section>
+
+      <!-- GAMEPLAY SCREEN -->
+      <section id="fire-gameplay" class="card glass hidden">
+        <!-- Top HUD -->
+        <div class="fire-hud-top">
+          <div class="weather-widget">
+            <span>⏱️ Tiempo: <strong id="mission-timer">00:00</strong></span>
+          </div>
+          <div>
+            <span style="font-size:0.75rem; color:var(--primary-emerald);">Bosque Vivo: <strong id="saved-pct">100.0%</strong></span>
+          </div>
+          <div>
+            <span style="font-size:0.75rem; color:var(--accent-gold);">Presupuesto: <strong id="budget-val">$10,000</strong></span>
+          </div>
+        </div>
+
+        <!-- Canvas Area -->
+        <div class="canvas-container">
+          <canvas id="fireCanvas" width="520" height="320"></canvas>
+          <div class="speed-controls">
+            <button class="speed-btn" id="btn-pause">⏸️ PAUSAR</button>
+            <button class="speed-btn active" id="btn-speed-normal">▶️ VELOCIDAD NORMAL</button>
+            <button class="speed-btn" id="btn-speed-fast">⏩ RÁPIDO</button>
+          </div>
+        </div>
+
+        <!-- Tactical Selection Buttons -->
+        <div class="tactical-bar">
+          <button class="tactical-btn active" data-tool="line">
+            <span>🧑‍🚒 Brecha Cortafuego</span>
+            <small style="color:var(--primary-emerald);">$-500 | Toca/Arrastra</small>
+          </button>
+          <button class="tactical-btn" data-tool="dozer">
+            <span>🚜 Tractor (Zanja)</span>
+            <small style="color:var(--accent-gold);">$-1,500 | Ancha</small>
+          </button>
+          <button class="tactical-btn" data-tool="air">
+            <span>🚁 Agente Aéreo</span>
+            <small style="color:var(--accent-neon);">$-2,000 | Apaga Fuego</small>
+          </button>
+          <button class="tactical-btn" data-tool="backfire">
+            <span>🔥 Contrafuego</span>
+            <small style="color:var(--danger-red);">$-800 | Quema Previa</small>
+          </button>
+        </div>
+      </section>
+
+      <!-- RESULTS SCREEN -->
+      <section id="fire-results" class="card glass hidden">
+        <div class="result-header text-center">
+          <div id="fire-trophy" class="result-trophy">🏆</div>
+          <h2 id="fire-result-title">¡INCENDIO CONTENIDO!</h2>
+          <p id="fire-result-subtitle">Has logrado sofocar el frente de avance con éxito.</p>
+        </div>
+
+        <div class="result-stats-grid">
+          <div class="stat-card">
+            <span class="label">Bosque Conservado</span>
+            <span class="value" id="res-saved" style="color:var(--primary-emerald);">88.5%</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Tiempo de Contención</span>
+            <span class="value" id="res-time">00:00</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Presupuesto Remanente</span>
+            <span class="value" id="res-budget">$4,200</span>
+          </div>
+          <div class="stat-card highlight">
+            <span class="label">Mejor Tiempo</span>
+            <span class="value" id="res-best-time">00:00</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btn-fire-again" class="btn btn-primary">🔥 Otra Partida</button>
+          <button onclick="window.location.href='silva_duel.html'" class="btn btn-secondary">🌲 Silva-Duel</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Fire-Tactics &copy; 2026 Fer Ardón — Demostración Táctica Interactiva</p>
+      <p style="font-size:0.65rem; opacity:0.6;">Desarrollado por Fer Ardón con apoyo de Claude (Anthropic) en el desarrollo del código.</p>
+    </footer>
+  </div>
+
+  <script src="fire_tactics.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+    }
+  </script>
+</body>
+</html>

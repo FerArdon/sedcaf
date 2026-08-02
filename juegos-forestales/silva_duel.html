@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SILVA-DUEL - Batalla de Manejo Forestal Sostenible</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <meta name="theme-color" content="#070B09">
+  <style>
+    /* Silva Duel Specific Styles */
+    .duel-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .forest-map-container {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .map-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .grid-6x6 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .parcel-cell {
+      background: rgba(0, 230, 118, 0.08);
+      border: 1px solid rgba(0, 230, 118, 0.2);
+      border-radius: 10px;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 4px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .parcel-cell:hover {
+      background: rgba(0, 230, 118, 0.2);
+      border-color: var(--primary-emerald);
+      transform: scale(1.03);
+    }
+
+    .parcel-cell.selected {
+      border: 2px solid var(--accent-gold);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+      background: rgba(255, 215, 0, 0.15);
+    }
+
+    .parcel-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .parcel-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 2px;
+      text-align: center;
+    }
+
+    .parcel-vol {
+      font-size: 0.6rem;
+      color: var(--accent-neon);
+      font-family: var(--font-mono);
+    }
+
+    .parcel-status-tag {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 0.55rem;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-weight: 800;
+    }
+
+    .tag-protected { background: rgba(0, 229, 255, 0.3); color: #00E5FF; }
+    .tag-harvested { background: rgba(255, 61, 0, 0.3); color: #FF3D00; }
+    .tag-thinned { background: rgba(255, 215, 0, 0.3); color: #FFD700; }
+
+    /* Action Panel */
+    .action-panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-panel h4 {
+      font-size: 0.85rem;
+      color: var(--primary-emerald);
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .act-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      padding: 10px 8px;
+      border-radius: 10px;
+      font-family: var(--font-family);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .act-btn:hover:not(:disabled) {
+      background: rgba(0, 230, 118, 0.15);
+      border-color: var(--primary-emerald);
+    }
+
+    .act-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .turn-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .turn-year {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--accent-gold);
+    }
+
+    /* Comparison metrics HUD */
+    .metrics-hud {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .m-card {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .m-card .m-label { font-size: 0.65rem; color: var(--text-muted); }
+    .m-card .m-val { font-size: 0.85rem; font-weight: 800; color: #FFF; }
+  </style>
+</head>
+<body>
+  <div id="app-container">
+    <!-- Header -->
+    <header class="app-header"><a href="https://ferardon.github.io/sedcaf/#productos" style="position:absolute;top:8px;left:8px;font-size:0.65rem;color:var(--text-muted);text-decoration:none;opacity:0.7;">← SEDCAF</a>
+      <div class="logo-area">
+        <span class="icon">🌲</span>
+        <div>
+          <h1 class="app-title">SILVA-DUEL</h1>
+          <span class="app-subtitle">BATALLA DE MANEJO SUSTENTABLE 1v1</span>
+        </div>
+      </div>
+      <div class="user-profile-badge">
+        <div class="avatar">FA</div>
+        <div class="user-info">
+          <span class="user-name">Ing. Fer Ardón</span>
+          <span class="user-elo">🏅 Récord: <strong id="user-elo-val">0</strong> pts</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" id="tab-duel">⏱️ Reto Contra Reloj</button>
+      <button class="tab-btn" onclick="window.location.href='index.html'">⚡ Arena Dendro</button>
+      <button class="tab-btn" id="tab-rank">🏆 Escalafón</button>
+      <button class="tab-btn" id="tab-rules">📜 Reglas Silva</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- LOBBY SCREEN -->
+      <section id="lobby-screen" class="card glass">
+        <div class="arena-hero">
+          <div class="vs-badge">SEMILLA DE MAPA #2026-F — CONTRA RELOJ</div>
+          <h2>Reto Táctico de Ordenamiento Forestal</h2>
+          <p>Administrás el bosque durante 4 turnos (20 años) con solo 3 minutos totales para decidir. ¿Lograrás la mejor rentabilidad económica sin destruir la sostenibilidad antes de que se acabe el tiempo?</p>
+        </div>
+
+        <div class="matchmaking-box">
+          <div class="player-card" style="margin:0 auto;">
+            <div class="avatar lg">FA</div>
+            <h3>Fer Ardón</h3>
+            <p class="uni">UNACIFOR / Ing. Forestal</p>
+            <span class="badge elo" id="silva-best-badge">Récord: 0 pts</span>
+          </div>
+        </div>
+
+        <button id="btn-start-duel" class="btn btn-primary btn-block">
+          <span>🚀 INICIAR RETO (4 TURNOS / 3:00 MIN)</span>
+        </button>
+      </section>
+
+      <!-- GAMEPLAY DUEL SCREEN -->
+      <section id="duel-gameplay-screen" class="card glass hidden">
+        <!-- Turn Header Bar -->
+        <div class="turn-bar">
+          <div>
+            <span style="font-size:0.7rem; color:var(--text-muted);">SIMULACIÓN ACADÉMICA</span>
+            <div class="turn-year" id="current-year-display">AÑO 2026 (Turno 1/4)</div>
+          </div>
+          <div style="text-align:center;">
+            <span style="font-size:0.7rem; color:var(--text-muted);">TIEMPO RESTANTE</span>
+            <div class="turn-year" id="duel-timer" style="color:var(--danger-red);">03:00</div>
+          </div>
+          <button id="btn-next-turn" class="btn btn-accent">
+            ▶️ AVANZAR 5 AÑOS
+          </button>
+        </div>
+
+        <!-- Metrics Comparison HUD -->
+        <div class="metrics-hud">
+          <div class="m-card">
+            <div class="m-label">VAN (Ganancia $)</div>
+            <div class="m-val" id="my-van">$0.00</div>
+          </div>
+          <div class="m-card">
+            <div class="m-label">Sostenibilidad</div>
+            <div class="m-val" id="my-sost" style="color:var(--primary-emerald);">100%</div>
+          </div>
+          <div class="m-card">
+            <div class="m-label">CO₂ Capturado</div>
+            <div class="m-val" id="my-co2">120.0 t</div>
+          </div>
+        </div>
+
+        <div class="duel-grid-layout">
+          <!-- Forest Grid Map -->
+          <div class="forest-map-container">
+            <div class="map-header">
+              <span><strong>RODAL FORESTAL (16 PARCELAS)</strong></span>
+              <span id="selected-parcel-info" style="color:var(--accent-gold);">Selecciona una parcela</span>
+            </div>
+
+            <div class="grid-6x6" id="forest-grid">
+              <!-- 16 Parcels populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Action Panel for Selected Parcel -->
+          <div class="action-panel">
+            <h4 id="action-panel-title">Acción sobre Parcela Seleccionada</h4>
+            <p id="action-panel-desc" style="font-size:0.75rem; color:var(--text-muted);">
+              Toca cualquier parcela del mapa para aplicar tratamientos silviculturales.
+            </p>
+
+            <div class="actions-grid">
+              <button class="act-btn" id="act-thin" disabled>
+                <span>🪓 Raleo (30%)</span>
+                <small style="color:var(--primary-emerald);">$+1,200.00 | Preserva ecosistema</small>
+              </button>
+              <button class="act-btn" id="act-harvest" disabled>
+                <span>🚜 Corta Final</span>
+                <small style="color:var(--accent-gold);">$+4,500.00 | Reduce Sostenibilidad</small>
+              </button>
+              <button class="act-btn" id="act-reforest" disabled>
+                <span>🌱 Reforestar</span>
+                <small style="color:var(--accent-neon);">$-800.00 | Recupera Bosque</small>
+              </button>
+              <button class="act-btn" id="act-protect" disabled>
+                <span>🛡️ Zona Reserva</span>
+                <small style="color:var(--primary-emerald); font-weight:800;">Protección Microcuenca</small>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTS DUEL SCREEN -->
+      <section id="duel-results-screen" class="card glass hidden">
+        <div class="result-header text-center">
+          <div id="duel-trophy" class="result-trophy">🏆</div>
+          <h2 id="duel-result-title">¡VICTORIA EN ORDENAMIENTO!</h2>
+          <p id="duel-result-subtitle">Has logrado el Índice de Manejo Sostenible más alto en los 20 años simulados.</p>
+        </div>
+
+        <div class="result-stats-grid">
+          <div class="stat-card">
+            <span class="label">Tu VAN Total</span>
+            <span class="value" id="res-my-van">$12,400.00</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Récord Anterior</span>
+            <span class="value" id="res-opp-van">$9,800.00</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Tu Sostenibilidad</span>
+            <span class="value" id="res-my-sost" style="color:var(--primary-emerald);">92.5%</span>
+          </div>
+          <div class="stat-card highlight">
+            <span class="label">Mejor Puntaje</span>
+            <span class="value" id="res-new-elo">1,548</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btn-duel-again" class="btn btn-primary">⚔️ Volver a Jugar</button>
+          <button onclick="window.location.href='index.html'" class="btn btn-secondary">⚡ Ir a Arena Dendro</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Silva-Duel &copy; 2026 Fer Ardón — Plataforma de Simulación de Ordenamiento Forestal</p>
+      <p style="font-size:0.65rem; opacity:0.6;">Desarrollado por Fer Ardón con apoyo de Claude (Anthropic) en el desarrollo del código.</p>
+    </footer>
+  </div>
+
+  <script src="silva_duel.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+    }
+  </script>
+</body>
+</html>

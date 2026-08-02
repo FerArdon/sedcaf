@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dendro-Speed & Biometric Arena - Demo Competitiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <meta name="theme-color" content="#070B09">
+</head>
+<body>
+  <div id="app-container">
+    <!-- Header -->
+    <header class="app-header"><a href="https://ferardon.github.io/sedcaf/#productos" style="position:absolute;top:8px;left:8px;font-size:0.65rem;color:var(--text-muted);text-decoration:none;opacity:0.7;">← SEDCAF</a>
+      <div class="logo-area">
+        <span class="icon">🌲</span>
+        <div>
+          <h1 class="app-title">DENDRO-SPEED</h1>
+          <span class="app-subtitle">100% VISUAL & CONCEPTUAL (SIN CALCULADORA)</span>
+        </div>
+      </div>
+      <div class="user-profile-badge">
+        <div class="avatar">FA</div>
+        <div class="user-info">
+          <span class="user-name">Ing. Fer Ardón</span>
+          <span class="user-elo">🏅 Récord: <strong id="user-elo-val">0</strong> pts</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="arena-tab">⏱️ Reto Relámpago</button>
+      <button class="tab-btn" data-tab="timeattack-tab">🎯 Modo Maratón</button>
+      <button class="tab-btn" data-tab="leaderboard-tab">📊 Mis Récords</button>
+      <button class="tab-btn" data-tab="formulas-tab">📖 Conceptos</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- TAB 1: RETO RELÁMPAGO (CONTRA RELOJ) -->
+      <section id="arena-tab" class="tab-content active">
+        <!-- Start Screen -->
+        <div id="matchmaking-screen" class="card glass">
+          <div class="arena-hero">
+            <div class="vs-badge">MODO 100% ÁGIL (ZERO-CALCULATOR)</div>
+            <h2>Agilidad Visual y Criterio Forestal</h2>
+            <p>Compara gráficos, reconoce especies, identifica instrumentos de campo y aplica criterios silviculturales sin hacer operaciones matemáticas. 5 rondas, 15 segundos cada una — supera tu propio récord.</p>
+          </div>
+
+          <div class="matchmaking-box">
+            <div class="player-card">
+              <div class="avatar lg">FA</div>
+              <h3>Fer Ardón</h3>
+              <p class="uni">UNACIFOR / Ing. Forestal</p>
+              <span class="badge elo" id="sprint-best-badge">Récord: 0 pts</span>
+            </div>
+          </div>
+
+          <button id="btn-start-match" class="btn btn-primary btn-block">
+            <span>🚀 INICIAR RETO CONTRA RELOJ</span>
+          </button>
+        </div>
+
+        <!-- Gameplay Screen -->
+        <div id="gameplay-screen" class="card glass hidden">
+          <!-- Top Match Status Bar -->
+          <div class="match-hud">
+            <div class="hud-player">
+              <span class="hud-name">Puntaje</span>
+              <div class="score-pill" id="my-score">0 pts</div>
+            </div>
+            <div class="hud-timer">
+              <div class="timer-circle" id="timer-circle">
+                <span id="match-timer">15.0</span>
+              </div>
+              <span class="round-indicator" id="round-num">Ronda 1/5</span>
+            </div>
+            <div class="hud-player opp">
+              <span class="hud-name">Récord</span>
+              <div class="score-pill opp" id="opp-score">0 pts</div>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-bar-container">
+            <div class="progress-fill" id="timer-progress-fill"></div>
+          </div>
+
+          <!-- Problem Card Container -->
+          <div id="problem-card" class="problem-card">
+            <!-- Category Badge -->
+            <div class="category-header">
+              <span class="badge category" id="problem-category">RECONOCIMIENTO VISUAL</span>
+              <span class="badge difficulty" id="problem-diff">+250 PTS</span>
+            </div>
+
+            <!-- Problem Description & Visual -->
+            <div class="problem-body">
+              <div id="problem-visual" class="problem-visual"></div>
+              <h3 id="problem-question" class="question-text">Cargando desafío visual...</h3>
+              <div id="problem-formula-hint" class="formula-hint"></div>
+            </div>
+
+            <!-- Answer Options -->
+            <div id="options-grid" class="options-grid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="results-screen" class="card glass hidden">
+          <div class="result-header text-center">
+            <div id="result-trophy" class="result-trophy">🏆</div>
+            <h2 id="result-title">¡NUEVO RÉCORD PERSONAL!</h2>
+            <p id="result-subtitle">Has demostrado agilidad visual y criterio forestal.</p>
+          </div>
+
+          <div class="result-stats-grid">
+            <div class="stat-card">
+              <span class="label">Tu Puntaje</span>
+              <span class="value" id="res-my-score">1,250</span>
+            </div>
+            <div class="stat-card">
+              <span class="label">Récord Anterior</span>
+              <span class="value" id="res-opp-score">980</span>
+            </div>
+            <div class="stat-card">
+              <span class="label">Precisión</span>
+              <span class="value" id="res-accuracy">100.0%</span>
+            </div>
+            <div class="stat-card highlight">
+              <span class="label">Mejor Récord</span>
+              <span class="value" id="res-new-elo">1,478</span>
+            </div>
+          </div>
+
+          <div class="breakdown-card">
+            <h4>Desglose de Desempeño Técnico</h4>
+            <ul id="breakdown-list" class="breakdown-list">
+              <!-- Populated dynamically -->
+            </ul>
+          </div>
+
+          <div class="action-buttons">
+            <button id="btn-play-again" class="btn btn-primary">🔁 Jugar Otra Partida</button>
+            <button id="btn-view-leaderboard" class="btn btn-secondary">📊 Ver Mis Récords</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: MODO MARATÓN (60s CONTINUOS) -->
+      <section id="timeattack-tab" class="tab-content">
+        <div class="card glass">
+          <h2>🎯 Modo Maratón — 60 Segundos</h2>
+          <p>Responde tantas preguntas como puedas antes de que se acabe el tiempo. Sin rondas fijas: solo vos contra el reloj.</p>
+          <div class="matchmaking-box" style="margin-bottom:14px;">
+            <div class="player-card" style="margin:0 auto;">
+              <div class="avatar lg">FA</div>
+              <h3>Fer Ardón</h3>
+              <span class="badge elo" id="marathon-best-badge">Récord: 0 pts</span>
+            </div>
+          </div>
+          <button id="btn-start-timeattack" class="btn btn-accent btn-block">🚀 INICIAR MARATÓN</button>
+        </div>
+
+        <!-- Marathon Gameplay -->
+        <div id="marathon-gameplay" class="card glass hidden" style="margin-top:12px;">
+          <div class="match-hud">
+            <div class="hud-player">
+              <span class="hud-name">Puntaje</span>
+              <div class="score-pill" id="marathon-score">0 pts</div>
+            </div>
+            <div class="hud-timer">
+              <div class="timer-circle" id="marathon-timer-circle">
+                <span id="marathon-timer">60.0</span>
+              </div>
+              <span class="round-indicator" id="marathon-count">Preguntas: 0</span>
+            </div>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-fill" id="marathon-progress-fill"></div>
+          </div>
+          <div id="marathon-problem-card" class="problem-card">
+            <div class="category-header">
+              <span class="badge category" id="marathon-category">RECONOCIMIENTO VISUAL</span>
+              <span class="badge difficulty" id="marathon-diff">+250 PTS</span>
+            </div>
+            <div class="problem-body">
+              <div id="marathon-visual" class="problem-visual"></div>
+              <h3 id="marathon-question" class="question-text">Cargando desafío visual...</h3>
+              <div id="marathon-formula-hint" class="formula-hint"></div>
+            </div>
+            <div id="marathon-options-grid" class="options-grid"></div>
+          </div>
+        </div>
+
+        <!-- Marathon Results -->
+        <div id="marathon-results" class="card glass hidden" style="margin-top:12px;">
+          <div class="result-header text-center">
+            <div class="result-trophy">⏱️</div>
+            <h2>¡TIEMPO AGOTADO!</h2>
+            <p id="marathon-result-subtitle">Buen ritmo de respuesta.</p>
+          </div>
+          <div class="result-stats-grid">
+            <div class="stat-card">
+              <span class="label">Puntaje Final</span>
+              <span class="value" id="marathon-res-score">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="label">Preguntas Respondidas</span>
+              <span class="value" id="marathon-res-count">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="label">Precisión</span>
+              <span class="value" id="marathon-res-accuracy">0%</span>
+            </div>
+            <div class="stat-card highlight">
+              <span class="label">Récord Maratón</span>
+              <span class="value" id="marathon-res-best">0</span>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button id="btn-marathon-again" class="btn btn-primary">🔁 Otra Maratón</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: MIS RÉCORDS -->
+      <section id="leaderboard-tab" class="tab-content">
+        <div class="card glass">
+          <div class="leaderboard-header">
+            <h2>📊 Mis Récords Personales</h2>
+            <p>Tu progreso contra reloj — sin comparaciones con otros jugadores.</p>
+          </div>
+
+          <div class="leaderboard-table">
+            <div class="table-row header">
+              <span class="col-rank">Modo</span>
+              <span class="col-name">Mejor Puntaje</span>
+              <span class="col-uni">Mejor Precisión</span>
+              <span class="col-elo">Partidas</span>
+            </div>
+            <div class="table-row rank-1">
+              <span class="col-rank">⏱️ Relámpago</span>
+              <span class="col-name" id="records-sprint-score">0 pts</span>
+              <span class="col-uni" id="records-sprint-accuracy">0%</span>
+              <span class="col-elo" id="records-sprint-plays">0</span>
+            </div>
+            <div class="table-row rank-2">
+              <span class="col-rank">🎯 Maratón</span>
+              <span class="col-name" id="records-marathon-score">0 pts</span>
+              <span class="col-uni" id="records-marathon-accuracy">0%</span>
+              <span class="col-elo" id="records-marathon-plays">0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: CONCEPTOS -->
+      <section id="formulas-tab" class="tab-content">
+        <div class="card glass">
+          <h2>📖 Guía de Criterios Forestales</h2>
+          <div class="formula-card">
+            <h3>1. Instrumentos de Campo</h3>
+            <small>• Relascopio de Bitterlich: Mide área basal/ha por conteo angular.<br>• Hipsómetro: Mide alturas por trigonometría.<br>• Barrena de Pressler: Extrae núcleos para determinación de edad e incremento.</small>
+          </div>
+          <div class="formula-card">
+            <h3>2. Silvicultura y Raleos</h3>
+            <small>• Raleo por abajo: Elimina árboles suprimidos y dominados para concentrar crecimiento en árboles dominantes.</small>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Dendro-Speed Arena &copy; 2026 Fer Ardón — Demostración 100% Visual y Conceptual</p>
+      <p style="font-size:0.65rem; opacity:0.6;">Desarrollado por Fer Ardón con apoyo de Claude (Anthropic) en el desarrollo del código.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+    }
+  </script>
+</body>
+</html>

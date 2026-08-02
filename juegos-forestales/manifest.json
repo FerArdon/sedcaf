@@ -1,0 +1,20 @@
+{
+  "name": "Liga Forestal Táctica — Dendro-Speed, Silva-Duel & Fire-Tactics",
+  "short_name": "Liga Forestal",
+  "description": "Suite de retos forestales contra reloj: agilidad visual, ordenamiento silvicultural y comando de incendios.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070B09",
+  "theme_color": "#070B09",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

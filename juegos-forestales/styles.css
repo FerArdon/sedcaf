@@ -244,6 +244,55 @@ body {
   color: var(--text-muted);
 }
 
+/* How to play (collapsible) */
+.how-to-play {
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2px 14px;
+}
+
+.how-to-play summary {
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-emerald);
+  padding: 10px 0;
+  list-style: none;
+}
+
+.how-to-play summary::-webkit-details-marker {
+  display: none;
+}
+
+.how-to-play summary::marker {
+  content: "";
+}
+
+.how-to-play[open] summary {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.how-to-play .htp-body {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding: 10px 0 14px;
+}
+
+.how-to-play .htp-body strong {
+  color: var(--text-main);
+}
+
+.how-to-play .htp-body ul {
+  margin: 6px 0 10px 18px;
+}
+
+.how-to-play .htp-body li {
+  margin-bottom: 4px;
+}
+
 .matchmaking-box {
   display: grid;
   grid-template-columns: 1fr auto 1fr;

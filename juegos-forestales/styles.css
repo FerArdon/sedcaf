@@ -122,6 +122,45 @@ body {
   color: var(--accent-gold);
 }
 
+/* Game Switcher (navigate between the 3 games) */
+.game-switcher {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.game-switch-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-family: var(--font-family);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 10px 6px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.game-switch-btn:hover {
+  color: var(--text-main);
+  border-color: var(--primary-emerald);
+}
+
+.game-switch-btn.active {
+  background: var(--primary-emerald);
+  color: #050B07;
+  border-color: var(--primary-emerald);
+  box-shadow: 0 4px 12px rgba(0, 230, 118, 0.3);
+  cursor: default;
+  pointer-events: none;
+}
+
 /* Tabs */
 .nav-tabs {
   display: grid;

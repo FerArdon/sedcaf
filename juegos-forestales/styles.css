@@ -9,6 +9,9 @@
   --danger-red: #FF3D00;
   --text-main: #ECEFF1;
   --text-muted: #90A4AE;
+  --bronze: #B08D57;
+  --bronze-light: #E4C08D;
+  --bronze-dark: #6E4A22;
   --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -211,8 +214,9 @@ body {
 }
 
 .player-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, rgba(176, 141, 87, 0.38), rgba(110, 74, 34, 0.28));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(228, 192, 141, 0.5);
   border-radius: 16px;
   padding: 16px 12px;
   text-align: center;
@@ -220,21 +224,53 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  box-shadow: 0 8px 24px rgba(110, 74, 34, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .avatar.lg {
   width: 52px;
   height: 52px;
   font-size: 1.3rem;
+  background: linear-gradient(135deg, var(--bronze-light), var(--bronze-dark));
+  color: #2A1B0C;
 }
 
 .player-card h3 {
   font-size: 0.9rem;
+  color: #FFFFFF;
 }
 
 .player-card .uni {
   font-size: 0.7rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.player-card .badge.elo {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.player-name-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #FFFFFF;
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.player-name-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.player-name-input:focus {
+  outline: none;
+  border-color: var(--bronze-light);
+  box-shadow: 0 0 0 2px rgba(228, 192, 141, 0.3);
 }
 
 .badge.elo, .badge.elo-opp {

@@ -53,6 +53,36 @@ class SoundEngine {
 
 const audio = new SoundEngine();
 
+// --- Player Identity (shared across the 3 games via localStorage) ---
+const PLAYER_NAME_KEY = "ligaForestalPlayerName";
+
+function loadPlayerName() {
+  return localStorage.getItem(PLAYER_NAME_KEY) || "";
+}
+
+function applyPlayerName(name) {
+  const display = name.trim() || "Jugador";
+  const initials = name.trim()
+    ? name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase()
+    : "?";
+  document.querySelectorAll(".user-name").forEach(el => el.textContent = display);
+  document.querySelectorAll(".avatar").forEach(el => el.textContent = initials);
+  document.querySelectorAll(".player-name-input").forEach(input => {
+    if (input.value !== name) input.value = name;
+  });
+}
+
+function initPlayerIdentity() {
+  const name = loadPlayerName();
+  applyPlayerName(name);
+  document.querySelectorAll(".player-name-input").forEach(input => {
+    input.addEventListener("input", () => {
+      localStorage.setItem(PLAYER_NAME_KEY, input.value);
+      applyPlayerName(input.value);
+    });
+  });
+}
+
 // ULTRA-SHORT TEXT CHALLENGES
 const ultraShortChallenges = [
   () => ({
@@ -158,6 +188,7 @@ let marathonState = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initPlayerIdentity();
   setupNavigation();
   setupSprintMode();
   setupMarathonMode();

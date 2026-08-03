@@ -46,6 +46,36 @@ class SoundEngine {
 
 const audio = new SoundEngine();
 
+// --- Player Identity (shared across the 3 games via localStorage) ---
+const PLAYER_NAME_KEY = "ligaForestalPlayerName";
+
+function loadPlayerName() {
+  return localStorage.getItem(PLAYER_NAME_KEY) || "";
+}
+
+function applyPlayerName(name) {
+  const display = name.trim() || "Jugador";
+  const initials = name.trim()
+    ? name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase()
+    : "?";
+  document.querySelectorAll(".user-name").forEach(el => el.textContent = display);
+  document.querySelectorAll(".avatar").forEach(el => el.textContent = initials);
+  document.querySelectorAll(".player-name-input").forEach(input => {
+    if (input.value !== name) input.value = name;
+  });
+}
+
+function initPlayerIdentity() {
+  const name = loadPlayerName();
+  applyPlayerName(name);
+  document.querySelectorAll(".player-name-input").forEach(input => {
+    input.addEventListener("input", () => {
+      localStorage.setItem(PLAYER_NAME_KEY, input.value);
+      applyPlayerName(input.value);
+    });
+  });
+}
+
 // Grid Dimensions
 const COLS = 52;
 const ROWS = 32;
@@ -91,6 +121,7 @@ function refreshBestBadge() {
   document.getElementById("fire-best-badge").textContent = best !== null
     ? `Mejor tiempo: ${formatTime(best)}`
     : "Mejor tiempo: --:--";
+  document.getElementById("header-best-time").textContent = best !== null ? formatTime(best) : "--:--";
 }
 
 function startMissionTimer() {
@@ -151,6 +182,7 @@ function triggerShake(mag) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initPlayerIdentity();
   setupLobby();
   setupTools();
   setupSpeedControls();

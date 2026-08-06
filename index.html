@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEDCAF | Consultoría Forestal</title>
+
+<!-- Google Analytics 4 (reemplazar G-XXXXXXXXXX con el ID de medicion) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <meta name="description" content="SEDCAF – Servicios de Consultoría y Asesoría Forestal. Más de 40 años de experiencia en gestión forestal, auditorías y proyectos en Honduras.">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -379,7 +389,7 @@ footer a:hover{color:var(--lima)}
    <p><i class="fa-solid fa-location-dot"></i> Tegucigalpa, Honduras</p>
   </div>
  </div>
- <div class="footer-bottom"><p>© 2026 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados.</p></div>
+ <div class="footer-bottom"><p>© 2026 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados. · <span id="visitas"></span></p></div>
 </footer>
 
 <a href="javascript:void(0)" id="waFloatBtn" class="wa-float-btn" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
@@ -395,6 +405,14 @@ footer a:hover{color:var(--lima)}
         var b = document.getElementById('waFloatBtn');
         if (b) b.href = 'https://wa.me/' + n + '?text=' + msg;
     })();
+</script>
+
+<script>
+/* Contador de visitas publico (Abacus) */
+fetch('https://abacus.jasoncameron.dev/hit/sedcaf-web/visitas')
+  .then(function(r){return r.json()})
+  .then(function(d){var e=document.getElementById('visitas'); if(e) e.textContent='\uD83D\uDC41 '+d.value.toLocaleString('en-US')+' visitas';})
+  .catch(function(){});
 </script>
 </body>
 </html>

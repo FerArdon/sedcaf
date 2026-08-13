@@ -73,6 +73,21 @@
                     <a href="#simulador" class="btn btn-outline" id="btnHeroSimulate"><i class="fa-solid fa-play"></i> Probar Demo</a>
                     <a href="#contacto" class="btn btn-outline" id="btnHeroContact">Solicitar Acceso <i class="fa-solid fa-envelope"></i></a>
                 </div>
+
+                <div style="display:flex; gap:36px; margin-top:34px; flex-wrap:wrap;">
+                    <div>
+                        <div style="font-size:1.9rem; font-weight:800; color:var(--accent-gold);" id="counter-visitas">—</div>
+                        <div style="font-size:.8rem; opacity:.7;">Visitas al sitio</div>
+                    </div>
+                    <div>
+                        <div style="font-size:1.9rem; font-weight:800; color:var(--accent-gold);" id="counter-descargas">—</div>
+                        <div style="font-size:.8rem; opacity:.7;">Descargas</div>
+                    </div>
+                    <div>
+                        <div style="font-size:1.9rem; font-weight:800; color:var(--accent-gold);">786+</div>
+                        <div style="font-size:.8rem; opacity:.7;">Leyes indexadas</div>
+                    </div>
+                </div>
             </div>
             
             <div class="hero-visual">
@@ -382,16 +397,12 @@
         
         <div class="footer-bottom">
             <p>&copy; 2026 IURIS HN | SEDCAF Consultores. Tegucigalpa, Honduras.</p>
-            <p style="margin-top:6px;font-size:13px;opacity:.75;">
-                <i class="fa-solid fa-eye"></i> <span id="counter-visitas">—</span> visitas ·
-                <i class="fa-solid fa-download"></i> <span id="counter-descargas">—</span> descargas
-            </p>
         </div>
     </footer>
 
     <script>
-        // Contador de visitas gratuito (countapi.xyz)
-        fetch('https://api.countapi.xyz/hit/ferardon.github.io-iurishn/visits')
+        // Contador de visitas gratuito (abacus)
+        fetch('https://abacus.jasoncameron.dev/hit/ferardon.github.io-iurishn/visits')
             .then(r => r.json())
             .then(data => {
                 var el = document.getElementById('counter-visitas');

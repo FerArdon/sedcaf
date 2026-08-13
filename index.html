@@ -181,6 +181,7 @@ footer a:hover{color:var(--lima)}
    <div class="stat"><b>40+</b><span>Años de experiencia</span></div>
    <div class="stat"><b>4</b><span>Soluciones de software</span></div>
    <div class="stat"><b>786+</b><span>Leyes en IURIS HN</span></div>
+   <div class="stat"><b id="counter-visitas">—</b><span>Visitas al sitio</span></div>
   </div>
  </div>
 </header>
@@ -391,13 +392,12 @@ footer a:hover{color:var(--lima)}
  </div>
  <div class="footer-bottom">
   <p>© 2026 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados.</p>
-  <p style="margin-top:6px;font-size:.8rem;color:var(--gris)"><i class="fa-solid fa-eye"></i> <span id="counter-visitas">—</span> visitas al sitio</p>
  </div>
 </footer>
 
 <script>
-  // Contador de visitas gratuito (countapi.xyz)
-  fetch('https://api.countapi.xyz/hit/ferardon.github.io-sedcaf/visits')
+  // Contador de visitas gratuito (abacus)
+  fetch('https://abacus.jasoncameron.dev/hit/ferardon.github.io-sedcaf/visits')
     .then(r => r.json())
     .then(data => {
       var el = document.getElementById('counter-visitas');

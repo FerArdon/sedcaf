@@ -22,6 +22,15 @@
     
     <!-- Estilos de IURIS HN -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PVRCYJ4LL7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PVRCYJ4LL7');
+    </script>
 </head>
 <body>
 
@@ -38,7 +47,7 @@
                 <li><a href="#caracteristicas">Características</a></li>
                 <li><a href="#simulador">Probar Buscador</a></li>
                 <li><a href="../" class="back-to-sedcaf"><i class="fa-solid fa-arrow-left"></i> Volver a SEDCAF</a></li>
-                <li><a href="https://github.com/FerArdon/IURIS-HN-releases/releases/download/v1.2.0/IURIS_HN_v1.2.0.apk" target="_blank" rel="noopener" class="btn btn-secondary" download><i class="fa-solid fa-download"></i> Descargar APK</a></li>
+                <li><a href="https://github.com/FerArdon/IURIS-HN-releases/releases/download/v1.2.0/IURIS_HN_v1.2.0.apk" target="_blank" rel="noopener" class="btn btn-secondary" download onclick="gtag('event','download_click',{product:'IURIS_HN', location:'nav'})"><i class="fa-solid fa-download"></i> Descargar APK</a></li>
                 <li><a href="#contacto" class="btn-nav" id="ctaNav">Solicitar Acceso</a></li>
             </ul>
             
@@ -60,7 +69,7 @@
                     Plataforma de búsqueda y análisis de legislación nacional. Diseñado para simplificar el acceso a normas, citar con precisión técnica y obtener explicaciones claras.
                 </p>
                 <div class="hero-actions">
-                    <a href="https://github.com/FerArdon/IURIS-HN-releases/releases/download/v1.2.0/IURIS_HN_v1.2.0.apk" class="btn btn-primary" id="btnHeroDownload" download><i class="fa-solid fa-download"></i> Descargar APK</a>
+                    <a href="https://github.com/FerArdon/IURIS-HN-releases/releases/download/v1.2.0/IURIS_HN_v1.2.0.apk" class="btn btn-primary" id="btnHeroDownload" download onclick="gtag('event','download_click',{product:'IURIS_HN', location:'hero'})"><i class="fa-solid fa-download"></i> Descargar APK</a>
                     <a href="#simulador" class="btn btn-outline" id="btnHeroSimulate"><i class="fa-solid fa-play"></i> Probar Demo</a>
                     <a href="#contacto" class="btn btn-outline" id="btnHeroContact">Solicitar Acceso <i class="fa-solid fa-envelope"></i></a>
                 </div>
@@ -215,7 +224,7 @@
                 <p style="color:#64748b; font-size:17px; max-width:520px; margin:0 auto;">
                     Acceso completo a las 786 leyes de Honduras. Sin compromisos — empieza gratis 30 días.
                 </p>
-                <a href="https://github.com/FerArdon/LEX-HONDURAS/releases/download/v1.0.0/IURIS_HN.apk" target="_blank" rel="noopener" class="btn btn-primary" download style="display:inline-flex; margin-top:20px;">
+                <a href="https://github.com/FerArdon/IURIS-HN-releases/releases/download/v1.2.0/IURIS_HN_v1.2.0.apk" target="_blank" rel="noopener" class="btn btn-primary" download style="display:inline-flex; margin-top:20px;" onclick="gtag('event','download_click',{product:'IURIS_HN', location:'precios'})">
                     <i class="fa-solid fa-download"></i> Descargar APK gratis
                 </a>
             </div>
@@ -330,7 +339,7 @@
                     
                     <div class="contact-actions">
                         <!-- APK download button -->
-                        <a href="https://github.com/FerArdon/LEX-HONDURAS/releases/download/v1.0.0/IURIS_HN.apk" target="_blank" rel="noopener" class="btn btn-primary" download>
+                        <a href="https://github.com/FerArdon/IURIS-HN-releases/releases/download/v1.2.0/IURIS_HN_v1.2.0.apk" target="_blank" rel="noopener" class="btn btn-primary" download onclick="gtag('event','download_click',{product:'IURIS_HN', location:'contacto'})">
                             <i class="fa-solid fa-download"></i> Descargar APK
                         </a>
 
@@ -373,8 +382,41 @@
         
         <div class="footer-bottom">
             <p>&copy; 2026 IURIS HN | SEDCAF Consultores. Tegucigalpa, Honduras.</p>
+            <p style="margin-top:6px;font-size:13px;opacity:.75;">
+                <i class="fa-solid fa-eye"></i> <span id="counter-visitas">—</span> visitas ·
+                <i class="fa-solid fa-download"></i> <span id="counter-descargas">—</span> descargas
+            </p>
         </div>
     </footer>
+
+    <script>
+        // Contador de visitas gratuito (countapi.xyz)
+        fetch('https://api.countapi.xyz/hit/ferardon.github.io-iurishn/visits')
+            .then(r => r.json())
+            .then(data => {
+                var el = document.getElementById('counter-visitas');
+                if (el) el.textContent = data.value ? data.value.toLocaleString('es-HN') : '1';
+            })
+            .catch(() => {
+                var el = document.getElementById('counter-visitas');
+                if (el) el.textContent = '—';
+            });
+
+        // Descargas reales desde GitHub Releases API
+        fetch('https://api.github.com/repos/FerArdon/IURIS-HN-releases/releases')
+            .then(r => r.json())
+            .then(releases => {
+                var total = releases.reduce(function(sum, rel) {
+                    return sum + rel.assets.reduce(function(s, a) { return s + a.download_count; }, 0);
+                }, 0);
+                var el = document.getElementById('counter-descargas');
+                if (el) el.textContent = total.toLocaleString('es-HN');
+            })
+            .catch(() => {
+                var el = document.getElementById('counter-descargas');
+                if (el) el.textContent = '—';
+            });
+    </script>
 
     <!-- Botón flotante de WhatsApp -->
     <a href="#" id="waFloatBtn" class="wa-float-btn" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">

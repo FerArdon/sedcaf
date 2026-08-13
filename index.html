@@ -7,6 +7,16 @@
 <meta name="description" content="SEDCAF – Servicios de Consultoría y Asesoría Forestal. Más de 40 años de experiencia en gestión forestal, auditorías y proyectos en Honduras.">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VBDD5XT9V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8VBDD5XT9V');
+</script>
+
 <style>
 :root{
   --bg:#0A0E11; --bg-2:#10161A; --panel:rgba(255,255,255,.04); --borde:rgba(193,120,90,.18);
@@ -229,7 +239,7 @@ footer a:hover{color:var(--lima)}
     <p>App gratuita para reportar daños ambientales desde el celular — tala ilegal, contaminación de agua, caza furtiva y más. Cualquier persona puede documentar un hallazgo con foto y ubicación, sin dar su nombre real ni datos personales. Funciona incluso sin señal: el reporte se guarda en el teléfono y se envía solo cuando vuelve la conexión.</p>
     <div class="product-actions">
      <a href="https://ferardon.github.io/sedcaf/centinela/" class="btn btn-lima">Ver más</a>
-     <a href="https://ferardon.github.io/centinela-ambiental-hn/" class="btn btn-ghost"><i class="fa-solid fa-triangle-exclamation"></i> Descargar y Contribuir</a>
+     <a href="https://ferardon.github.io/centinela-ambiental-hn/" class="btn btn-ghost" onclick="gtag('event','download_click',{product:'CentinelaAmbiental'})"><i class="fa-solid fa-triangle-exclamation"></i> Descargar y Contribuir</a>
     </div>
     <p style="font-size:.75rem; color:var(--gris); margin-top:16px;">Créditos: desarrollo y autoría Ing. Fernando Ardón — SEDCAF. Desarrollado con asistencia de IA (Claude). © 2026 Fernando Ardón. Uso libre y gratuito con fines institucionales, educativos y de reporte ciudadano ambiental, citando la autoría original.</p>
    </div>
@@ -248,7 +258,7 @@ footer a:hover{color:var(--lima)}
     <p>Software profesional para ingenieros forestales, regentes y consultores registrados en COLPROFORH. Protocolo Judicial FEMA · Bitácora TFC · Facturador · Dashboard — todo sin internet.</p>
     <div class="product-actions">
      <a href="https://ferardon.github.io/SilvaDeskPro/" class="btn btn-lima">Ver más</a>
-     <a href="https://github.com/FerArdon/SilvaDeskPro/releases/latest" class="btn btn-ghost"><i class="fa-solid fa-download"></i> Descargar gratis</a>
+     <a href="https://github.com/FerArdon/SilvaDeskPro/releases/latest" class="btn btn-ghost" onclick="gtag('event','download_click',{product:'SilvaDeskPro'})"><i class="fa-solid fa-download"></i> Descargar gratis</a>
     </div>
    </div>
    <div class="grid-chips">
@@ -284,7 +294,7 @@ footer a:hover{color:var(--lima)}
     <p>Software de escritorio para gestión de expedientes judiciales, protocolo notarial y actuaciones procesales. 100% offline, marca blanca configurable.</p>
     <div class="product-actions">
      <a href="https://ferardon.github.io/JURIS-GESTION-PRO/" class="btn btn-lima">Ver más</a>
-     <a href="https://github.com/FerArdon/JURIS-GESTION-PRO/releases/latest" class="btn btn-ghost"><i class="fa-solid fa-download"></i> Descargar gratis</a>
+     <a href="https://github.com/FerArdon/JURIS-GESTION-PRO/releases/latest" class="btn btn-ghost" onclick="gtag('event','download_click',{product:'JURIS-GESTION-PRO'})"><i class="fa-solid fa-download"></i> Descargar gratis</a>
     </div>
    </div>
    <div class="grid-chips">
@@ -302,7 +312,7 @@ footer a:hover{color:var(--lima)}
     <p>App móvil Android para ingenieros forestales, técnicos y peritos. Cubicación de árboles y trozas con fórmulas oficiales ICF/COHDEFOR, inventario forestal estadístico y GPS de campo — 100% offline.</p>
     <div class="product-actions">
      <a href="https://ferardon.github.io/VericubicMaster/" class="btn btn-lima">Ver más</a>
-     <a href="https://github.com/FerArdon/VericubicMaster/releases/latest" class="btn btn-ghost"><i class="fa-solid fa-download"></i> Descargar gratis</a>
+     <a href="https://github.com/FerArdon/VericubicMaster/releases/latest" class="btn btn-ghost" onclick="gtag('event','download_click',{product:'VericubicMaster'})"><i class="fa-solid fa-download"></i> Descargar gratis</a>
     </div>
    </div>
    <div class="grid-chips">
@@ -379,8 +389,25 @@ footer a:hover{color:var(--lima)}
    <p><i class="fa-solid fa-location-dot"></i> Tegucigalpa, Honduras</p>
   </div>
  </div>
- <div class="footer-bottom"><p>© 2026 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados.</p></div>
+ <div class="footer-bottom">
+  <p>© 2026 SEDCAF – Servicios de Consultoría y Asesoría Forestal. Todos los derechos reservados.</p>
+  <p style="margin-top:6px;font-size:.8rem;color:var(--gris)"><i class="fa-solid fa-eye"></i> <span id="counter-visitas">—</span> visitas al sitio</p>
+ </div>
 </footer>
+
+<script>
+  // Contador de visitas gratuito (countapi.xyz)
+  fetch('https://api.countapi.xyz/hit/ferardon.github.io-sedcaf/visits')
+    .then(r => r.json())
+    .then(data => {
+      var el = document.getElementById('counter-visitas');
+      if (el) el.textContent = data.value ? data.value.toLocaleString('es-HN') : '1';
+    })
+    .catch(() => {
+      var el = document.getElementById('counter-visitas');
+      if (el) el.textContent = '—';
+    });
+</script>
 
 <a href="javascript:void(0)" id="waFloatBtn" class="wa-float-btn" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 5L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.85 14.06c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09 1-2.37.24-.26.53-.32.7-.32.18 0 .35 0 .5.01.16.01.38-.06.6.46.24.55.79 1.9.86 2.04.07.14.11.3.02.49-.09.19-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.45.12.61-.07.16-.19.7-.81.89-1.09.19-.28.38-.23.63-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg>

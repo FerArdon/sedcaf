@@ -72,7 +72,7 @@ h2{font-family:var(--display);font-size:clamp(2rem,4vw,2.7rem);line-height:1.15;
 .about{background:var(--bg-2)}
 .about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:center}
 .about-photo-wrap{position:relative}
-.about-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 38%;display:block;border-radius:18px;border:1px solid var(--borde)}
+.about-photo{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 35%;display:block;border-radius:18px;border:1px solid var(--borde)}
 .glow-frame{position:absolute;inset:-14px;border:1px solid var(--borde);border-radius:24px;z-index:-1}
 .exp-chip{position:absolute;bottom:-20px;right:-14px;background:rgba(10,14,17,.9);backdrop-filter:blur(10px);border:1px solid var(--borde);border-radius:14px;padding:16px 22px;text-align:center}
 .exp-chip b{font-family:var(--display);font-size:1.7rem;color:var(--lima);display:block;line-height:1.1}
@@ -88,6 +88,9 @@ h2{font-family:var(--display);font-size:clamp(2rem,4vw,2.7rem);line-height:1.15;
 .section-header .sub{color:var(--gris);margin-top:14px}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .svc{background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:34px 28px;transition:.35s;position:relative;overflow:hidden}
+.svc:last-child:nth-child(3n+1){grid-column:2}
+a.svc{display:block;color:inherit;text-decoration:none}
+.svc-destacada{border-color:rgba(193,120,90,.45)}
 .svc::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--lima),transparent);opacity:0;transition:.35s}
 .svc:hover{transform:translateY(-6px);border-color:rgba(193,120,90,.4);background:rgba(193,120,90,.05)}
 .svc:hover::before{opacity:1}
@@ -221,6 +224,7 @@ footer a:hover{color:var(--lima)}
    <p class="sub">Soluciones integrales para el sector forestal y ambiental de Honduras.</p>
   </div>
   <div class="services-grid">
+   <a href="#productos" class="svc svc-destacada"><div class="icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Desarrollo de Aplicaciones Forestales</h3><p>Software propio para gestión forestal, peritaje judicial y consulta jurídica: SilvaDesk Pro, IURIS HN y JURIS-GESTIÓN-PRO.</p><span class="more">Ver software →</span></a>
    <div class="svc"><div class="icon"><i class="fa-solid fa-clipboard-check"></i></div><h3>Auditorías Técnicas</h3><p>Verificación de planes operativos y cumplimiento normativo en industrias forestales.</p><span class="more">Ver más →</span></div>
    <div class="svc"><div class="icon"><i class="fa-solid fa-gavel"></i></div><h3>Servicios Legales</h3><p>Asesoría en trámites administrativos y dictámenes técnicos para casos judiciales.</p><span class="more">Ver más →</span></div>
    <div class="svc"><div class="icon"><i class="fa-solid fa-seedling"></i></div><h3>Manejo Forestal</h3><p>Instalación de viveros, planes de manejo forestal y silvicultura avanzada.</p><span class="more">Ver más →</span></div>

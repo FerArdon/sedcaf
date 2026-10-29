@@ -156,6 +156,22 @@ footer p,footer a{color:#B9C6BB;font-size:.92rem}
 footer a:hover{color:#E0A184}
 .footer-logo{height:66px;width:auto;background:#FFFFFF;border-radius:10px;padding:8px 11px;margin-bottom:16px}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.14);padding:20px 0;text-align:center;font-size:.82rem;color:#9BAA9D}
+.team{background:var(--bg-2)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:start}
+.member{background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:30px 22px;text-align:center;box-shadow:0 1px 3px rgba(21,43,31,.05)}
+.member .avatar{width:112px;height:112px;border-radius:50%;overflow:hidden;border:3px solid #fff;box-shadow:0 0 0 2px var(--lima-suave);margin:0 auto 16px}
+.member .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.member h3{color:var(--verde);font-family:var(--serif);font-size:1.02rem;margin-bottom:6px}
+.member .role{color:var(--lima);font-weight:600;font-size:.82rem;margin-bottom:10px}
+.member p{font-size:.88rem;color:var(--gris)}
+.bio{margin-top:14px;border-top:1px solid var(--borde);padding-top:12px;text-align:left}
+.bio summary{cursor:pointer;color:var(--verde-medio);font-weight:600;font-size:.84rem;text-align:center;list-style:none}
+.bio summary::-webkit-details-marker{display:none}
+.bio summary::after{content:" +"}
+.bio[open] summary::after{content:" −"}
+.bio p{margin-top:12px;font-size:.86rem;line-height:1.6}
+@media(max-width:1000px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.team-grid{grid-template-columns:1fr}}
 @media(max-width:900px){
  .about-photo{aspect-ratio:1/1;object-position:50% 32%}
  .nav-inner{height:72px}
@@ -182,7 +198,7 @@ footer a:hover{color:#E0A184}
   <ul class="nav-links">
    <li><a href="#inicio">Inicio</a></li>
    <li><a href="#about">Sobre Mí</a></li>
-   <li><a href="#servicios">Servicios</a></li>
+   <li><a href="#servicios">Servicios</a></li><li><a href="#equipo">Equipo</a></li>
    <li><a href="#productos">Software</a></li>
    <li><a href="juegos-forestales/">🎮 Juegos</a></li>
    <li><a href="#contacto" class="nav-cta">Contáctenos</a></li>
@@ -224,7 +240,7 @@ footer a:hover{color:#E0A184}
    <p class="lead">Profesional forestal con más de 40 años de experiencia, uniendo la técnica con la gestión estratégica.</p>
    <p>SEDCAF integra experiencia técnica, precisión legal y herramientas digitales modernas para garantizar resultados confiables, trazables y de alto nivel profesional en el sector forestal y ambiental de Honduras.</p>
    <ul class="feature-list">
-    <li><i class="fa-solid fa-circle-check"></i> Auditorías Técnicas y Legales</li>
+    <li><i class="fa-solid fa-circle-check"></i> Auditorías Técnicas Forestales</li>
     <li><i class="fa-solid fa-circle-check"></i> Administración de Proyectos Forestales</li>
     <li><i class="fa-solid fa-circle-check"></i> Gestión de Industrias y Comercio Forestal</li>
     <li><i class="fa-solid fa-circle-check"></i> Capacitación y Extensión Rural</li>
@@ -241,13 +257,31 @@ footer a:hover{color:#E0A184}
    <p class="sub">Soluciones integrales para el sector forestal y ambiental de Honduras.</p>
   </div>
   <div class="services-grid">
-   <a href="#productos" class="svc svc-destacada"><div class="icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Desarrollo de Aplicaciones Forestales</h3><p>Software propio para gestión forestal, peritaje judicial y consulta jurídica: SilvaDesk Pro, IURIS HN y JURIS-GESTIÓN-PRO.</p><span class="more">Ver software →</span></a>
-   <div class="svc"><div class="icon"><i class="fa-solid fa-clipboard-check"></i></div><h3>Auditorías Técnicas</h3><p>Verificación de planes operativos y cumplimiento normativo en industrias forestales.</p><span class="more">Ver más →</span></div>
-   <div class="svc"><div class="icon"><i class="fa-solid fa-gavel"></i></div><h3>Servicios Legales</h3><p>Asesoría en trámites administrativos y dictámenes técnicos para casos judiciales.</p><span class="more">Ver más →</span></div>
-   <div class="svc"><div class="icon"><i class="fa-solid fa-seedling"></i></div><h3>Manejo Forestal</h3><p>Instalación de viveros, planes de manejo forestal y silvicultura avanzada.</p><span class="more">Ver más →</span></div>
-   <div class="svc"><div class="icon"><i class="fa-solid fa-diagram-project"></i></div><h3>Administración de Proyectos</h3><p>Gerencia de proyectos forestales, diagnósticos socioeconómicos y extensión comunitaria.</p><span class="more">Ver más →</span></div>
-   <div class="svc"><div class="icon"><i class="fa-solid fa-globe"></i></div><h3>Importación y Exportación</h3><p>Asesoría en la gerencia de empresas dedicadas al comercio internacional de madera.</p><span class="more">Ver más →</span></div>
-   <div class="svc"><div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div><h3>Capacitación</h3><p>Formación técnica y desarrollo de capacidades para personal técnico y comunidades rurales.</p><span class="more">Ver más →</span></div>
+   <a href="#productos" class="svc svc-destacada"><div class="icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Desarrollo de Aplicaciones Forestales</h3><p>Software propio para gestión forestal, análisis técnico y consulta jurídica: SilvaDesk Pro, IURIS HN, JURIS-GESTIÓN-PRO y más. Uso de inteligencia artificial aplicada al análisis técnico-forestal.</p><span class="more">Ver software →</span></a>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-handshake-angle"></i></div><h3>Asesoría Técnica Forestal Especializada</h3><p>Acompañamos a propietarios, industrias y empresas del sector forestal para que sus planes de manejo, planes operativos y documentos de transporte de madera cumplan con la normativa vigente. Revisamos y corregimos antes de presentarlos ante las autoridades, y entregamos informes técnicos de respaldo.</p></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-clipboard-check"></i></div><h3>Auditorías Técnicas Forestales</h3><p>Verificación del cumplimiento normativo en industrias forestales, para que la empresa identifique y corrija sus puntos débiles antes de una inspección. Se basa en el manual técnico de auditoría de aplicación nacional.</p></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-seedling"></i></div><h3>Planes de Manejo y Viveros</h3><p>Elaboración y revisión de planes de manejo forestal. Asesoría técnica para viveros y proyectos de reforestación.</p></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-satellite"></i></div><h3>SIG y Teledetección</h3><p>Análisis de imágenes satelitales, mapas temáticos y cobertura vegetal con ArcGIS y QGIS.</p></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-diagram-project"></i></div><h3>Administración de Proyectos</h3><p>Gerencia de proyectos forestales y ambientales, sistemas de información, mejora de procesos y operaciones, y diagnósticos socioeconómicos.</p></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div><h3>Capacitación y Docencia</h3><p>Formación técnica en legislación ambiental, elaboración de dictámenes, educación ambiental y herramientas SIG para instituciones, universidades y comunidades.</p></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-industry"></i></div><h3>Gerencia Forestal e Industrial</h3><p>Asesoría en la administración de aserraderos, industrias de la madera y empresas importadoras y exportadoras.</p></div>
+   <div class="svc"><div class="icon"><i class="fa-solid fa-water"></i></div><h3>Regencia y Evaluación Ambiental</h3><p>Evaluación de impacto ambiental, licenciamiento ambiental, diagnósticos biofísicos y socioeconómicos, y protección de microcuencas.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="equipo" class="section team">
+ <div class="container">
+  <div class="section-header">
+   <p class="section-label">Quiénes Somos</p>
+   <h2>Nuestro <span class="grad-text">Equipo</span></h2>
+   <p class="sub">Profesionales con experiencia complementaria para atender cada necesidad del sector forestal y ambiental.</p>
+  </div>
+  <div class="team-grid">
+   <div class="member"><div class="avatar"><img src="assets/img/equipo/fernando.jpg" alt="Ing. Fernando Rafael Ardón Rodríguez" loading="lazy"></div><h3>Ing. Fernando Rafael Ardón Rodríguez</h3><p class="role">Gerente General (Propietario)</p><p>Gestión forestal, asesoría técnica, auditorías y docencia.</p><details class="bio"><summary>Ver biografía</summary><p>Ingeniero Forestal con orientación en Industrias Forestales y Dasónomo, con más de 40 años de trayectoria en el sector forestal de Honduras como consultor, gerente, asesor técnico, instructor y administrador. Realizó auditorías técnicas en industrias forestales para el ICF y elaboró un manual de auditoría de aplicación nacional. Hoy dirige SEDCAF, desarrolla aplicaciones forestales y comparte su experiencia en la docencia.</p></details></div>
+   <div class="member"><div class="avatar"><img src="assets/img/equipo/isaac.jpg" alt="Ing. Isaac Fernando Ardón" loading="lazy"></div><h3>Ing. Isaac Fernando Ardón</h3><p class="role">Subgerente</p><p>Ingeniería industrial: procesos, operaciones, logística y gestión de proyectos.</p><details class="bio"><summary>Ver biografía</summary><p>Ingeniero Industrial, con experiencia en dirección de operaciones, gestión de proyectos y mejora de procesos. Ha liderado equipos multidisciplinarios, controlado presupuestos y supervisado la ejecución de proyectos constructivos. También tiene experiencia en logística, distribución y control de inventarios. Actualmente se desempeña como Analista de Procesos y Métodos, donde diseña, documenta y estandariza procesos y procedimientos empresariales, y participa como voluntario en la creación y gestión de comedores infantiles. Cuenta con certificación White Belt en Lean Six Sigma.</p></details></div>
+   <div class="member"><div class="avatar"><img src="assets/img/equipo/mauricio.jpg" alt="Ing. Mauricio Martínez Rosales" loading="lazy"></div><h3>Ing. Mauricio Martínez Rosales</h3><p class="role">Consultor Asociado</p><p>Administración de proyectos y sistemas de información.</p><details class="bio"><summary>Ver biografía</summary><p>Ingeniero en Computación, con más de 15 años de trayectoria en administración de proyectos y sistemas de información en México y Centroamérica. Ha dirigido oficinas de gestión de proyectos, definido metodologías y estándares de entrega, y diseñado sistemas para organizaciones comunitarias y programas de desarrollo.</p></details></div>
+   <div class="member"><div class="avatar"><img src="assets/img/equipo/dennis.jpg" alt="Ing. Dennis Isaac Pinot Melgar" loading="lazy"></div><h3>Ing. Dennis Isaac Pinot Melgar</h3><p class="role">Consultor Asociado</p><p>Regencia y evaluación ambiental, SIG y manejo de microcuencas.</p><details class="bio"><summary>Ver biografía</summary><p>Ingeniero en Recursos Naturales y Ambiente, regente y evaluador ambiental y Prestador de Servicios Ambientales. Fue Perito Técnico de investigación en delitos ambientales en la Fiscalía Especial de Medio Ambiente (2023–2026). Ha elaborado estudios de impacto ambiental, diagnósticos biofísicos y socioeconómicos, declaratorias de microcuencas en Olancho y mapas de riesgo, con manejo avanzado de SIG. Cursa la Licenciatura en Derecho.</p></details></div>
   </div>
  </div>
 </section>
@@ -426,7 +460,7 @@ footer a:hover{color:#E0A184}
   </div>
   <div>
    <h4>Navegación</h4>
-   <ul><li><a href="#inicio">Inicio</a></li><li><a href="#about">Sobre Mí</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#contacto">Contacto</a></li></ul>
+   <ul><li><a href="#inicio">Inicio</a></li><li><a href="#about">Sobre Mí</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#equipo">Equipo</a></li><li><a href="#contacto">Contacto</a></li></ul>
   </div>
   <div>
    <h4>Contacto</h4>

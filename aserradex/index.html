@@ -106,6 +106,20 @@ img { max-width: 100%; display: block; }
 .shot figcaption { padding: 14px 18px; color: var(--text-secondary); font-size: 0.88rem; }
 .shot figcaption b { color: var(--text-primary); display: block; margin-bottom: 2px; }
 
+/* Precios */
+.price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 950px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .price-grid { grid-template-columns: 1fr; } }
+.price-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 16px; padding: 26px 22px; }
+.price-card.destacado { border-color: var(--accent); box-shadow: 0 4px 24px var(--accent-glow); }
+.price-card h3 { font-size: 1.05rem; color: var(--accent); margin-bottom: 8px; }
+.price-card .price { font-family: var(--font-title); font-size: 1.7rem; font-weight: 800; }
+.price-card .price-tot { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 14px; }
+.price-card ul { list-style: none; color: var(--text-secondary); font-size: 0.9rem; }
+.price-card li { margin-bottom: 8px; padding-left: 18px; position: relative; }
+.price-card li::before { content: "✓"; color: var(--accent-verde); position: absolute; left: 0; }
+.price-nota { text-align: center; color: var(--text-secondary); font-size: 0.88rem; margin-top: 26px; }
+
 /* Cumplimiento y estado */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
@@ -152,6 +166,7 @@ img { max-width: 100%; display: block; }
     <ul class="nav-links">
       <li><a href="#funciones">Funciones</a></li>
       <li><a href="#capturas">Capturas</a></li>
+      <li><a href="#precios">Precios</a></li>
       <li><a href="#descargas">Descargas</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="../" class="back-to-sedcaf"><i class="fa-solid fa-arrow-left"></i> Volver a SEDCAF</a></li>
@@ -171,7 +186,7 @@ img { max-width: 100%; display: block; }
       </p>
       <div class="hero-actions">
         <a href="https://ferardon.github.io/ASERRADEX_APP/" class="btn btn-primary"><i class="fa-solid fa-play"></i> Probar la App</a>
-        <a href="https://ferardon.github.io/ASERRADEX_APP/#precios" class="btn btn-outline"><i class="fa-solid fa-tags"></i> Planes y precios</a>
+        <a href="#precios" class="btn btn-outline"><i class="fa-solid fa-tags"></i> Planes y precios</a>
       </div>
     </div>
     <div class="hero-logo">
@@ -274,7 +289,44 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<section id="descargas" class="section alt">
+<section id="precios" class="section alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">Planes y precios</span>
+      <h2 class="section-title">Desde una renta mensual hasta un pago único</h2>
+      <p class="section-desc">Tú eliges. Precios en lempiras (L).</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Mensual</h3>
+        <div class="price">L 350.00</div>
+        <p class="price-tot">L 402.50 con ISV 15%</p>
+        <ul><li>1 PC incluida</li><li>Actualizaciones por 1 mes</li></ul>
+      </div>
+      <div class="price-card">
+        <h3>Semestral</h3>
+        <div class="price">L 1,500.00</div>
+        <p class="price-tot">L 1,725.00 con ISV 15%</p>
+        <ul><li>2 PC incluidas</li><li>Actualizaciones por 6 meses</li></ul>
+      </div>
+      <div class="price-card">
+        <h3>Anual</h3>
+        <div class="price">L 2,500.00</div>
+        <p class="price-tot">L 2,875.00 con ISV 15%</p>
+        <ul><li>2 PC incluidas</li><li>1 revisión remota (2.00 h)</li><li>Actualizaciones por 12 meses</li></ul>
+      </div>
+      <div class="price-card destacado">
+        <h3>Permanente</h3>
+        <div class="price">L 6,000.00</div>
+        <p class="price-tot">L 6,900.00 con ISV 15% · pago único</p>
+        <ul><li>5 PC incluidas</li><li>1 revisión remota (3.00 h)</li><li>Actualizaciones por 12 meses, luego mantenimiento de 15% al año</li></ul>
+      </div>
+    </div>
+    <p class="price-nota">Soporte adicional fuera de lo incluido: L 722.66 por hora + ISV = L 831.06 por hora, con mínimo de 2.00 horas por solicitud (L 1,662.12 con ISV).</p>
+  </div>
+</section>
+
+<section id="descargas" class="section">
   <div class="container">
     <div class="section-header">
       <span class="sub-label">Dónde corre</span>
@@ -341,10 +393,10 @@ img { max-width: 100%; display: block; }
 <section class="cta-final">
   <div class="container">
     <h2>Llega al cierre del mes <span class="gradient-text">con las cuentas claras</span></h2>
-    <p>Pruébala con datos de demostración o escríbenos para conocer los planes.</p>
+    <p>Pruébala con datos de demostración o escríbenos para elegir tu plan.</p>
     <div class="cta-actions">
       <a href="https://ferardon.github.io/ASERRADEX_APP/" class="btn btn-primary"><i class="fa-solid fa-play"></i> Probar la App</a>
-      <a href="https://ferardon.github.io/ASERRADEX_APP/#precios" class="btn btn-outline"><i class="fa-solid fa-tags"></i> Planes y precios</a>
+      <a href="#precios" class="btn btn-outline"><i class="fa-solid fa-tags"></i> Planes y precios</a>
     </div>
   </div>
 </section>

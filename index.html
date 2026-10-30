@@ -27,6 +27,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:70px}
 body{font-family:var(--body);background:var(--bg);color:var(--texto);line-height:1.7}
 .container{max-width:1180px;margin:0 auto;padding:0 24px}
 a{text-decoration:none;color:inherit}
@@ -390,7 +391,7 @@ footer a:hover{color:#E0A184}
     <h3>Aserradex</h3>
     <p>Control de producción y trazabilidad para aserraderos en Honduras: cubicación de trozas, aserrío, Informe Mensual de Industrias Primarias para el ICF y facturación SAR (CAI, ISV) — 100% offline, en PC Windows, Android o cualquier navegador.</p>
     <div class="product-actions">
-     <a href="https://ferardon.github.io/ASERRADEX_APP/" class="btn btn-lima">Ver más</a>
+     <a href="https://ferardon.github.io/sedcaf/aserradex/" class="btn btn-lima">Ver más</a>
      <a href="https://ferardon.github.io/ASERRADEX_APP/#precios" class="btn btn-ghost">Planes y precios</a>
     </div>
    </div>
@@ -446,7 +447,8 @@ footer a:hover{color:#E0A184}
     <div class="fg"><label>Correo electrónico</label><input type="email" placeholder="su@correo.com"></div>
     <div class="fg"><label>Asunto</label><input type="text" placeholder="¿En qué podemos ayudarle?"></div>
     <div class="fg"><label>Mensaje</label><textarea rows="5" placeholder="Describa su consulta..."></textarea></div>
-    <button type="button" class="btn btn-lima" style="width:100%;justify-content:center"><i class="fa-solid fa-paper-plane"></i> Enviar Mensaje</button>
+    <button type="submit" class="btn btn-lima" style="width:100%;justify-content:center"><i class="fa-solid fa-paper-plane"></i> Enviar Mensaje</button>
+    <p id="form-aviso" style="color:var(--gris);font-size:.85rem;margin-top:10px;display:none">Se abrirá su programa de correo con el mensaje listo para enviar. Si no se abre, escríbanos a sedcaf.consultores@outlook.com</p>
    </form>
   </div>
  </div>
@@ -485,6 +487,23 @@ footer a:hover{color:#E0A184}
       var el = document.getElementById('counter-visitas');
       if (el) el.textContent = '—';
     });
+</script>
+
+<script>
+  // Formulario de contacto: arma un correo a SEDCAF con los datos escritos
+  (function(){
+    var f = document.querySelector('#contacto form.form');
+    if (!f) return;
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = f.querySelectorAll('input, textarea');
+      var nombre = v[0].value.trim(), correo = v[1].value.trim(), asunto = v[2].value.trim(), msg = v[3].value.trim();
+      if (!nombre || !correo || !msg) { alert('Escriba su nombre, correo y mensaje.'); return; }
+      var cuerpo = msg + '\n\nNombre: ' + nombre + '\nCorreo: ' + correo;
+      location.href = 'mailto:sedcaf.consultores@outlook.com?subject=' + encodeURIComponent(asunto || 'Consulta desde el sitio web') + '&body=' + encodeURIComponent(cuerpo);
+      document.getElementById('form-aviso').style.display = 'block';
+    });
+  })();
 </script>
 
 <a href="javascript:void(0)" id="waFloatBtn" class="wa-float-btn" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aserradex — Control de Producción para Aserraderos en Honduras</title>
+<meta name="description" content="Control de producción y trazabilidad para aserraderos en Honduras: cubicación de trozas, aserrío, Informe Mensual ICF y facturación SAR. Funciona sin internet en PC Windows, Android o navegador.">
+
+<meta property="og:title" content="Aserradex — Control de Producción para Aserraderos">
+<meta property="og:description" content="Cubicación, aserrío, Informe Mensual ICF y facturación SAR en una sola aplicación que funciona sin internet.">
+<meta property="og:url" content="https://ferardon.github.io/sedcaf/aserradex/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --bg-primary: #0a0e11;
+  --bg-secondary: #10161a;
+  --bg-card: rgba(31, 41, 46, 0.55);
+  --accent: #c88a2e;
+  --accent-hover: #dfa34a;
+  --accent-glow: rgba(200, 138, 46, 0.18);
+  --accent-verde: #3f8a62;
+  --text-primary: #ffffff;
+  --text-secondary: #a3aeb3;
+  --text-muted: #6b7a84;
+  --border-soft: rgba(255,255,255,0.08);
+  --font-title: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --container-width: 1180px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+h1, h2, h3, h4 { font-family: var(--font-title); }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px; border-radius: 12px; font-weight: 700;
+  font-family: var(--font-title); font-size: 0.95rem;
+  transition: all 0.25s ease; border: none; cursor: pointer;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-verde) 100%); color: #10140f; box-shadow: 0 4px 20px var(--accent-glow); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--accent-glow); }
+.btn-outline { border: 1.5px solid var(--border-soft); color: var(--text-primary); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Navbar */
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(10,14,17,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-soft); }
+.nav-container { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
+.logo-wrap { display: flex; align-items: center; gap: 10px; }
+.logo-img { width: 38px; height: 38px; border-radius: 8px; object-fit: contain; }
+.logo-text { font-family: var(--font-title); font-weight: 700; font-size: 1.15rem; }
+.accent { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 26px; list-style: none; }
+.nav-links a { color: var(--text-secondary); font-size: 0.92rem; font-weight: 500; }
+.nav-links a:hover { color: var(--accent); }
+.back-to-sedcaf { display: flex; align-items: center; gap: 6px; }
+@media (max-width: 860px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero-section { padding: 90px 0 70px; position: relative; overflow: hidden; }
+.hero-bg-glow { position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 100%; max-width: 900px; height: 500px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; position: relative; z-index: 1; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
+.tag-pill { display: inline-block; background: var(--accent-glow); border: 1px solid rgba(200,138,46,0.35); color: var(--accent); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 20px; font-weight: 700; }
+.hero-title { font-size: clamp(2.1rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+.gradient-text { background: linear-gradient(135deg, var(--accent), var(--accent-verde)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-subtitle { color: var(--text-secondary); font-size: 1.05rem; max-width: 520px; margin-bottom: 32px; }
+@media (max-width: 900px) { .hero-subtitle { margin: 0 auto 32px; } }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 900px) { .hero-actions { justify-content: center; } }
+.hero-logo { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 24px; padding: 36px; max-width: 360px; margin: 0 auto; }
+
+/* Secciones */
+.section { padding: 70px 0; }
+.section.alt { background: var(--bg-secondary); }
+.section-header { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+.sub-label { color: var(--accent); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; }
+.section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin: 10px 0 12px; }
+.section-desc { color: var(--text-secondary); }
+
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 950px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
+.feature-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 16px; padding: 28px 22px; }
+.feature-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--accent); margin-bottom: 16px; }
+.feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.feature-card p { color: var(--text-secondary); font-size: 0.9rem; }
+
+/* Flujo */
+.flow { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+.flow .step { background: var(--bg-card); border: 1px solid var(--border-soft); padding: 12px 18px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; }
+.flow .arrow { color: var(--accent); font-weight: 700; }
+
+/* Capturas */
+.shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 900px) { .shots-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; } }
+.shot { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 16px; overflow: hidden; }
+.shot img { width: 100%; height: auto; background: #f3f1ea; }
+.shot figcaption { padding: 14px 18px; color: var(--text-secondary); font-size: 0.88rem; }
+.shot figcaption b { color: var(--text-primary); display: block; margin-bottom: 2px; }
+
+/* Cumplimiento y estado */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+.info-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 16px; padding: 28px; }
+.info-card h3 { color: var(--accent); margin-bottom: 16px; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+.info-card ul { list-style: none; color: var(--text-secondary); font-size: 0.92rem; }
+.info-card li { margin-bottom: 10px; overflow-wrap: anywhere; }
+.info-card li b { color: var(--text-primary); }
+.info-card .ok { color: var(--accent-verde); }
+
+/* Descargas */
+.dl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 800px) { .dl-grid { grid-template-columns: 1fr; } }
+.dl-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 16px; padding: 26px; text-align: center; }
+.dl-card i { font-size: 2rem; color: var(--accent); margin-bottom: 12px; }
+.dl-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.dl-card p { color: var(--text-secondary); font-size: 0.88rem; }
+
+/* Notas y contacto */
+.legal-section { padding: 40px 0 60px; }
+.legal-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-left: 4px solid var(--accent); border-radius: 12px; padding: 26px 30px; max-width: 900px; margin: 0 auto; }
+.legal-card h4 { color: var(--accent); margin-bottom: 10px; font-size: 1rem; }
+.legal-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px; overflow-wrap: anywhere; }
+
+.cta-final { text-align: center; padding: 70px 0 90px; }
+.cta-final h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+.cta-final p { color: var(--text-secondary); margin: 0 auto 30px; max-width: 520px; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+.footer { border-top: 1px solid var(--border-soft); padding: 40px 0 24px; }
+.footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 24px; }
+.footer p { color: var(--text-muted); font-size: 0.85rem; }
+.footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border-soft); padding-top: 20px; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo-wrap">
+      <img src="assets/logo_aserradex.png" class="logo-img" alt="Aserradex">
+      <span class="logo-text">Aserradex</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#capturas">Capturas</a></li>
+      <li><a href="#descargas">Descargas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="../" class="back-to-sedcaf"><i class="fa-solid fa-arrow-left"></i> Volver a SEDCAF</a></li>
+      <li><a href="https://ferardon.github.io/ASERRADEX_APP/" class="btn btn-primary" style="padding:9px 18px;">Probar la App</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero-section">
+  <div class="hero-bg-glow"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="tag-pill">Gestión de Aserraderos · Sin internet</span>
+      <h1 class="hero-title">Del patio al Informe Mensual,<br><span class="gradient-text">sin cuentas a mano</span></h1>
+      <p class="hero-subtitle">
+        Control de producción y trazabilidad para aserraderos en Honduras: cubicación de trozas, aserrío, paquetes, Informe Mensual para el ICF y facturación SAR. Los datos viven en tu equipo, así que funciona aunque el patio no tenga señal.
+      </p>
+      <div class="hero-actions">
+        <a href="https://ferardon.github.io/ASERRADEX_APP/" class="btn btn-primary"><i class="fa-solid fa-play"></i> Probar la App</a>
+        <a href="https://ferardon.github.io/ASERRADEX_APP/#precios" class="btn btn-outline"><i class="fa-solid fa-tags"></i> Planes y precios</a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img src="assets/logo_aserradex.png" alt="Logo de Aserradex">
+    </div>
+  </div>
+</header>
+
+<section id="funciones" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">¿Qué hace?</span>
+      <h2 class="section-title">Todo el aserradero en una sola aplicación</h2>
+      <p class="section-desc">Cada módulo registra lo que el aserradero necesita llevar al día, con trazabilidad entre ellos.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+        <h3>Cubicación Smalian</h3>
+        <p>Volumen de trozas en m³ con código QR y etiqueta por troza.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <h3>Aserrío y paquetes</h3>
+        <p>Producción y pies tablares por escantillón, con el rendimiento de cada lote.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <h3>Informe Mensual ICF</h3>
+        <p>Disponible, saldo, producción y rendimiento (PT/m³) calculados desde tus registros.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-receipt"></i></div>
+        <h3>Facturación SAR</h3>
+        <p>Rangos CAI, correlativo controlado, ISV 15% y guía de salida.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-route"></i></div>
+        <h3>Trazabilidad con QR</h3>
+        <p>Del ingreso a la salida: proveedor, troza, lote, paquete, tratamiento y despacho.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-id-card"></i></div>
+        <h3>Licencias y permisos</h3>
+        <p>Estado automático (vigente, por vencer, vencida) con aviso en la pantalla de inicio.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+        <h3>Personal, EPP y planilla</h3>
+        <p>Jornadas, entregas de equipo de protección y planilla con tasas que registra tu contador.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Usuarios y bitácora</h3>
+        <p>Roles con PIN, anulación con motivo en lugar de borrado y respaldo en un archivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">El flujo completo</span>
+      <h2 class="section-title">De la troza a la salida</h2>
+    </div>
+    <div class="flow">
+      <span class="step">Entrada (guía ICF)</span><span class="arrow">→</span>
+      <span class="step">Cubicación</span><span class="arrow">→</span>
+      <span class="step">Aserrío</span><span class="arrow">→</span>
+      <span class="step">Paquetes (PT)</span><span class="arrow">→</span>
+      <span class="step">Salida / Factura</span><span class="arrow">→</span>
+      <span class="step">Informe Mensual ICF</span>
+    </div>
+  </div>
+</section>
+
+<section id="capturas" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">Así se ve</span>
+      <h2 class="section-title">Pantallas de la aplicación</h2>
+      <p class="section-desc">Capturas con datos de demostración.</p>
+    </div>
+    <div class="shots-grid">
+      <figure class="shot">
+        <img src="assets/captura_cubicacion.jpg" alt="Pantalla de cubicación Smalian" loading="lazy">
+        <figcaption><b>Cubicación Smalian</b>Volumen por troza con su código QR.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/captura_facturacion.jpg" alt="Pantalla de facturación SAR" loading="lazy">
+        <figcaption><b>Facturación SAR</b>Rangos CAI, ISV y guía de salida.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/captura_informe_icf.jpg" alt="Pantalla del Informe Mensual ICF" loading="lazy">
+        <figcaption><b>Informe Mensual ICF</b>Saldo, producción y rendimiento PT/m³.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="descargas" class="section alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-label">Dónde corre</span>
+      <h2 class="section-title">PC, Android o navegador</h2>
+      <p class="section-desc">Los datos se guardan en el equipo y no dependen de internet.</p>
+    </div>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <i class="fa-brands fa-windows"></i>
+        <h3>PC Windows 10 / 11</h3>
+        <p style="margin-bottom:16px;">Versiones de 64 y 32 bits.</p>
+        <a href="https://github.com/FerArdon/ASERRADEX_APP/releases" class="btn btn-outline">Ver descargas</a>
+      </div>
+      <div class="dl-card">
+        <i class="fa-brands fa-android"></i>
+        <h3>Android 7.0 o superior</h3>
+        <p style="margin-bottom:16px;">APK con lector QR por cámara.</p>
+        <a href="https://github.com/FerArdon/ASERRADEX_APP/releases" class="btn btn-outline">Ver descargas</a>
+      </div>
+      <div class="dl-card">
+        <i class="fa-solid fa-globe"></i>
+        <h3>Cualquier navegador</h3>
+        <p style="margin-bottom:16px;">Se instala como app desde Chrome.</p>
+        <a href="https://ferardon.github.io/ASERRADEX_APP/" class="btn btn-outline">Abrir la app</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="info-card">
+        <h3><i class="fa-solid fa-scale-balanced"></i> Normativa que contempla</h3>
+        <ul>
+          <li><b>ICF:</b> RNF, guías de transporte e Informe Mensual con rendimiento PT/m³.</li>
+          <li><b>SAR:</b> rangos CAI, ISV 15% y correlativos que no se reutilizan.</li>
+          <li><b>IHSS, RAP, INFOP:</b> planilla y entregas de EPP.</li>
+          <li><b>NIMF 15:</b> registro del tratamiento térmico (56 °C en el núcleo por 30 minutos).</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3><i class="fa-solid fa-list-check"></i> Estado del producto</h3>
+        <ul>
+          <li><b>Fase 1:</b> entradas, cubicación, aserrío, salidas e Informe ICF <span class="ok">· hecha y probada</span></li>
+          <li><b>Fase 2:</b> facturación SAR, guías y pagos a proveedores <span class="ok">· hecha y probada</span></li>
+          <li><b>Fase 3:</b> licencias, residuos, tratamientos, EPP y planilla <span class="ok">· hecha y probada</span></li>
+          <li><b>Fase 4:</b> usuarios, trazabilidad, reportes y APK <span class="ok">· hecha y probada</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="legal-section">
+  <div class="container">
+    <div class="legal-card">
+      <h4><i class="fa-solid fa-circle-info"></i> Producto en desarrollo</h4>
+      <p>Aserradex apoya el registro y la preparación de la información, pero no garantiza por sí solo el cumplimiento normativo. Las reglas de facturación, anulación y planilla deben validarse con el ICF, el SAR y un contador antes de usarse en producción. La facturación electrónica aún no está implementada.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <h2>Llega al cierre del mes <span class="gradient-text">con las cuentas claras</span></h2>
+    <p>Pruébala con datos de demostración o escríbenos para conocer los planes.</p>
+    <div class="cta-actions">
+      <a href="https://ferardon.github.io/ASERRADEX_APP/" class="btn btn-primary"><i class="fa-solid fa-play"></i> Probar la App</a>
+      <a href="https://ferardon.github.io/ASERRADEX_APP/#precios" class="btn btn-outline"><i class="fa-solid fa-tags"></i> Planes y precios</a>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="legal-section">
+  <div class="container">
+    <div class="legal-card" style="text-align:center; border-left-color:var(--accent-verde);">
+      <h4><i class="fa-solid fa-envelope"></i> Contacto</h4>
+      <p>¿Quieres una demostración o coordinar la implementación en tu aserradero?</p>
+      <p style="font-size:1.05rem; color:var(--text-primary); font-weight:600; margin-top:10px;">sedcaf.consultores@outlook.com</p>
+      <a href="mailto:sedcaf.consultores@outlook.com?subject=Consulta%20sobre%20Aserradex" class="btn btn-outline" style="margin-top:16px;"><i class="fa-solid fa-paper-plane"></i> Enviar Correo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo-wrap"><span class="logo-text">Aserradex</span></div>
+        <p>Control de producción para aserraderos en Honduras.</p>
+      </div>
+      <div>
+        <p>Desarrollado por <strong>SEDCAF</strong>.</p>
+      </div>
+      <div>
+        <p style="font-weight:700; color:var(--text-primary); margin-bottom:4px;">Créditos</p>
+        <p>Desarrollo y autoría: Ing. Fernando Ardón — SEDCAF consultores, servicios de consultoría y aplicaciones forestales.</p>
+        <p style="font-size:0.8rem; margin-top:6px;">Desarrollado con asistencia de IA (Claude).</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 SEDCAF consultores, servicios de consultoría y aplicaciones forestales. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

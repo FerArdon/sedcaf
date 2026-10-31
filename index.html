@@ -112,6 +112,13 @@ a.svc{display:block;color:inherit;text-decoration:none}
 .svc .icon{width:52px;height:52px;border-radius:12px;background:#EAF0EA;border:1px solid #D6E0D6;color:var(--verde);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:20px}
 .svc h3{color:var(--verde);font-family:var(--serif);font-size:1.15rem;margin-bottom:10px}
 .svc p{font-size:.9rem;color:var(--gris)}
+.mvv{padding:80px 0 20px}
+.mvv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.mvv .svc:hover{transform:none}
+.mvv-img{display:block;width:33.33%;min-width:96px;aspect-ratio:1/1;object-fit:contain;background:#0d0d0d;border-radius:12px;margin:0 auto 20px}
+.mvv-list{list-style:none;padding:0;margin:0}
+.mvv-list li{font-size:.9rem;color:var(--gris);margin-bottom:9px;line-height:1.5}
+.mvv-list b{color:var(--verde)}
 .svc .more{display:inline-block;margin-top:16px;font-size:.82rem;color:var(--verde-medio);font-weight:600}
 
 /* PRODUCTS */
@@ -179,7 +186,7 @@ footer a:hover{color:#E0A184}
  .logo img{height:46px}
  .logo{font-size:1.1rem;gap:9px}
  .about-grid,.product-card,.contact-wrap{grid-template-columns:1fr}
- .services-grid{grid-template-columns:1fr}
+ .services-grid,.mvv-grid{grid-template-columns:1fr}
  .svc:last-child:nth-child(3n+1){grid-column:auto}
  .footer-grid{grid-template-columns:1fr}
  .nav-links{display:none}
@@ -246,6 +253,27 @@ footer a:hover{color:#E0A184}
     <li><i class="fa-solid fa-circle-check"></i> Gestión de Industrias y Comercio Forestal</li>
     <li><i class="fa-solid fa-circle-check"></i> Capacitación y Extensión Rural</li>
    </ul>
+  </div>
+ </div>
+</section>
+
+<section id="mision" class="section mvv">
+ <div class="container">
+  <div class="section-header">
+   <p class="section-label">Nuestro Rumbo</p>
+   <h2>Misión, Visión y <span class="grad-text">Valores</span></h2>
+  </div>
+  <div class="mvv-grid">
+   <div class="svc"><img src="assets/img/mision.png" alt="Misión" class="mvv-img" loading="lazy"><h3>Misión</h3><p>Acompañar a empresas, instituciones, proyectos y productores con asesoría, auditorías y planes de manejo; gerencia e industria forestal; regencia y evaluación ambiental; y gestión de proyectos y herramientas digitales, para que sus decisiones en el sector forestal, ambiental y agroambiental sean confiables, trazables y acordes con la normativa.</p></div>
+   <div class="svc"><img src="assets/img/vision.png" alt="Visión" class="mvv-img" loading="lazy"><h3>Visión</h3><p>Ser una consultora confiable en gestión de recursos naturales, empresas y proyectos de desarrollo en Honduras, reconocida por unir la técnica con la gestión estratégica y la tecnología.</p></div>
+   <div class="svc"><img src="assets/img/valores.png" alt="Valores" class="mvv-img" loading="lazy"><h3>Valores</h3>
+    <ul class="mvv-list">
+     <li><b>Rigor técnico:</b> criterio profesional y apego a la normativa vigente.</li>
+     <li><b>Trazabilidad:</b> cada resultado se puede respaldar y verificar.</li>
+     <li><b>Transparencia:</b> decimos con claridad qué hacemos, cómo y con qué alcance.</li>
+     <li><b>Compromiso con las personas y los recursos naturales:</b> un manejo responsable y un beneficio real para clientes y comunidades.</li>
+     <li><b>Trabajo en equipo:</b> experiencias técnicas, ambientales, administrativas y financieras para soluciones completas.</li>
+    </ul></div>
   </div>
  </div>
 </section>
@@ -317,14 +345,14 @@ footer a:hover{color:#E0A184}
    <div>
     <span class="tag">Gestión Forestal</span>
     <h3>SilvaDesk Pro</h3>
-    <p>Software profesional para ingenieros forestales, regentes y consultores registrados en COLPROFORH. Protocolo Judicial FEMA · Bitácora TFC · Facturador · Dashboard — todo sin internet.</p>
+    <p>Software profesional para ingenieros forestales, regentes y consultores registrados en COLPROFORH. Protocolo Judicial · Bitácora TFC · Facturador · Dashboard — todo sin internet.</p>
     <div class="product-actions">
      <a href="https://ferardon.github.io/SilvaDeskPro/" class="btn btn-lima">Ver más</a>
      <a href="https://github.com/FerArdon/SilvaDeskPro/releases/latest" class="btn btn-ghost" onclick="gtag('event','download_click',{product:'SilvaDeskPro'})"><i class="fa-solid fa-download"></i> Descargar gratis</a>
     </div>
    </div>
    <div class="grid-chips">
-    <div class="gchip"><b>⚖️ Protocolo Judicial</b><span>Actas para FEMA y juzgados</span></div>
+    <div class="gchip"><b>⚖️ Protocolo Judicial</b><span>Actas para uso judicial</span></div>
     <div class="gchip"><b>📓 Bitácora TFC</b><span>Registros de campo normados</span></div>
     <div class="gchip"><b>🌿 Arancel COLPROFORH</b><span>Calculadora tarifas 2024</span></div>
     <div class="gchip"><b>🗺️ Mapa de Predios</b><span>Gestión geoespacial</span></div>
